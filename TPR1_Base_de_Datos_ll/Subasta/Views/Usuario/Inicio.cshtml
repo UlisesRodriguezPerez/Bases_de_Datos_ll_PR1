@@ -1,0 +1,47 @@
+﻿@model List<model.entity.Usuario>
+@{
+    ViewBag.Title = "Inicio";
+}
+
+
+<div class="container">
+    <td><a class="btn btn-success" href="~/Usuario/Create">Crear Nuevo Usuario</a></td>
+    <table class="table ">
+        <tr class="btn-primary">
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Alias</th>
+            <th>Correo</th>
+            <th>Password</th>
+            <th>Cuantos Subastados</th>
+            <th>Cuantos Comprados</th>
+            <th>Es Admin</th>
+            <th colspan="9">Operaciones</th>
+
+        </tr>
+        @foreach (var objetoUsuario in Model)
+        {
+            <tr>
+                <td>@objetoUsuario.IdUsuario</td>
+                <td>@objetoUsuario.NombreUsuario</td>
+                <td>@objetoUsuario.PrimerApellido</td>
+                <td>@objetoUsuario.SegundoApellido</td>
+                <td>@objetoUsuario.Alias</td>
+                <td>@objetoUsuario.Correo</td>
+                <td>@objetoUsuario.Password</td>
+                <td>@objetoUsuario.CuantosSubastados</td>
+                <td>@objetoUsuario.CuantosComprados</td>
+                <td>@objetoUsuario.EsAdmin</td>
+
+
+                <!--  PENDEINTE EL VER  -->
+                <td><a class="btn btn-success" href="~/Usuario/find/@objetoUsuario.IdUsuario">Ver</a></td>
+                <td><a class="btn btn-primary" href="~/Usuario/update/@objetoUsuario.IdUsuario">Actualizar</a></td>
+                <td><a class="btn btn-danger" href="~/Usuario/delete/@objetoUsuario.IdUsuario">Eliminar</a></td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "model.entity", "model.entity\model.entity.csproj", "{3B2EAD4D-4E0B-4EE1-9670-2E3901CCC8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "model.dao", "model.dao\model.dao.csproj", "{BD0EDC8E-7665-4414-B928-3A65FD281AFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subasta", "Subasta\Subasta.csproj", "{BB5AE666-EBCA-4620-B939-45EE2DC27EA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B2EAD4D-4E0B-4EE1-9670-2E3901CCC8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2EAD4D-4E0B-4EE1-9670-2E3901CCC8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2EAD4D-4E0B-4EE1-9670-2E3901CCC8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2EAD4D-4E0B-4EE1-9670-2E3901CCC8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0EDC8E-7665-4414-B928-3A65FD281AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0EDC8E-7665-4414-B928-3A65FD281AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0EDC8E-7665-4414-B928-3A65FD281AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0EDC8E-7665-4414-B928-3A65FD281AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5AE666-EBCA-4620-B939-45EE2DC27EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5AE666-EBCA-4620-B939-45EE2DC27EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5AE666-EBCA-4620-B939-45EE2DC27EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5AE666-EBCA-4620-B939-45EE2DC27EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C03F7DAD-6E91-40B3-9252-55BEBC47EF8C}
+	EndGlobalSection
+EndGlobal
