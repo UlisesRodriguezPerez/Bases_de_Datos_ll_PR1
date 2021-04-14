@@ -22,8 +22,7 @@ namespace model.dao
         //Constructor donde agregaremos la cadena de conexión con SqlServer.
         private ConexionOracle()
         {
-            //string conexion = System.Configuration. ConfigurationManager.AppSettings["Data Source=CursoBases2;User Id=ULISES;Password=12345;Integrated Security=no;"].ToString();
-            //Data Source = MyOracleDB; User Id = myUsername; Password = myPassword; Integrated Security = no;
+
             conexionOracle = new OracleConnection("Data Source=orcl;User Id=ULISES;Password=12345;");
             //connectionString = "Server=localhost;Port=5432;DataBase=Bases2_Prueba;Uid=Bases de datos;Pwd=1234" 
         }
