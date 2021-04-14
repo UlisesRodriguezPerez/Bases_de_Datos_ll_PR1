@@ -73,7 +73,7 @@ namespace Subasta.Controllers
         public ActionResult Delete(Usuario objUsuario, int ID)
         {
             objUsuario.IdUsuario = ID;
-            objetoUsuario.delete(objUsuario);
+            objetoUsuario.deleteOracle(objUsuario);
             return RedirectToAction("Inicio");
         }
     }

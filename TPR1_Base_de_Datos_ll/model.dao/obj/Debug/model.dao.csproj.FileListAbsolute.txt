@@ -30,3 +30,5 @@ C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\obj\Debug\model.
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\obj\Debug\model.dao.pdb
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\bin\Debug\model.entity.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\bin\Debug\model.entity.pdb
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.dao\bin\Debug\Oracle.DataAccess.dll

@@ -6,6 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using model.entity;
+//using System.Data.OracleClient;
+//using Oracle.ManagedDataAccess.Client;
+using Oracle.DataAccess.Client;
+
+//using Oracle.ManagedDataAccess.Client;
 
 namespace model.dao
 {
@@ -14,11 +19,15 @@ namespace model.dao
         private Conexion objConexion;
         private NpgsqlCommand comando;
 
+        private ConexionOracle objConexionOracle;
+        private OracleCommand comandoOracle;
+
 
         public UsuarioDao()
         {
             //obtenerIP();
             objConexion = Conexion.saberEstado();
+            objConexionOracle = ConexionOracle.saberEstado();
         }
 
         public List<Usuario> findAll()
@@ -246,6 +255,26 @@ namespace model.dao
             {
                 objConexion.getConexion().Close();
                 objConexion.cerrarConexion();
+            }
+        }
+        public void deleteOracle(Usuario objetoUsuario)
+        {
+            
+                comandoOracle = new OracleCommand("eliminarusuario", objConexionOracle.getConexionOracle());
+                comandoOracle.CommandType = CommandType.StoredProcedure;
+                comandoOracle.Parameters.Add("pid", objetoUsuario.IdUsuario);
+                objConexionOracle.getConexionOracle().Open();
+                comandoOracle.ExecuteNonQuery();
+            try
+            { }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
         }
     }

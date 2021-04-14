@@ -109,3 +109,4 @@ C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\obj\Debug\Subasta.
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.pdb
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll.config
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Oracle.DataAccess.dll
