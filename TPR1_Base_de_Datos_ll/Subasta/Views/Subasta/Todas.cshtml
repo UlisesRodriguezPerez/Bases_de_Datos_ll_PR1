@@ -1,0 +1,52 @@
+﻿@model List<model.entity.Subastas>
+@{
+    ViewBag.Title = "Inicio";
+}
+
+
+<div class="container">
+    <td><a class="btn btn-success" href="~/Subasta/Create">Crear Subasta</a></td>
+    <table class="table ">
+        <tr class="btn-primary">
+            <th>idsubasta</th>
+            <th>idvendedor</th>
+            <th>idcomprador</th>
+            <th>idsubcategoria</th>
+            <th>idcategoria</th>
+            <th>nombrecomprador</th>
+            <th>nombrevendedor</th>
+            <th>nombrecategoria</th>
+            <th>nombresubcategoria</th>
+            <th>descripcion</th>
+            <th>formaentrega</th>
+            <th>precioinicial</th>
+            <th>fechainicio</th>
+            <th>fechafinal</th>
+        </tr>
+        @foreach (var objetoSubasta in Model)
+        {
+            <tr>
+                <td>@objetoSubasta.IdSubasta</td>
+                <td>@objetoSubasta.IdVendedor</td>
+                <td>@objetoSubasta.IdComprador</td>
+                <td>@objetoSubasta.IdSubCategoria</td>
+                <td>@objetoSubasta.IdCategoria</td>
+                <td>@objetoSubasta.NombreComprador</td>
+                <td>@objetoSubasta.NombreVendedor</td>
+                <td>@objetoSubasta.NombreCategoria</td>
+                <td>@objetoSubasta.NombreSubCategoria</td>
+                <td>@objetoSubasta.Descripcion</td>
+                <td>@objetoSubasta.FormaEntrega</td>
+                <td>@objetoSubasta.PrecioInicial</td>
+                <td>@objetoSubasta.FechaInicio</td>
+                <td>@objetoSubasta.FechaFinal</td>
+
+                <!--  PENDEINTE EL VER  -->
+                <td><a class="btn btn-success" href="~/Subasta/find/@objetoSubasta.IdSubasta">Ver</a></td>
+                <td><a class="btn btn-primary" href="~/Subasta/update/@objetoSubasta.IdSubasta">Actualizar</a></td>
+                <td><a class="btn btn-danger" href="~/Subasta/delete/@objetoSubasta.IdSubasta">Eliminar</a></td>
+            </tr>
+        }
+    </table>
+</div>
+

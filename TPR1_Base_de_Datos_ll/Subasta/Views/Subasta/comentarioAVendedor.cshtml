@@ -1,0 +1,30 @@
+﻿@model model.entity.Subastas
+@{
+    ViewBag.Title = "Crear Comenario a Vendedor";
+}
+
+<h1>Crear Comenario a Vendedor</h1>
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ComentarioAVendedor, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.ComentarioAVendedor, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Evaluacion, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-actions col-md-offset-2">
+        <input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar" />
+        @*<a class="btn btn-primary" href="~/Usuario">Regresar</a>*@
+    </div>
+</div>
+}

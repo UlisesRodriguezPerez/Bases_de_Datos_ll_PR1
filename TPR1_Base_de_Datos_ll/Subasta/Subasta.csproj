@@ -236,6 +236,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\SubastaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -285,6 +286,11 @@
     <Content Include="Views\Usuario\Update.cshtml" />
     <Content Include="Views\Usuario\Find.cshtml" />
     <Content Include="Views\Menu\MenuNormal.cshtml" />
+    <Content Include="Views\Subasta\Inicio.cshtml" />
+    <Content Include="Views\Subasta\Todas.cshtml" />
+    <Content Include="Views\Subasta\Subastadas.cshtml" />
+    <Content Include="Views\Subasta\Compradas.cshtml" />
+    <Content Include="Views\Subasta\comentarioAVendedor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

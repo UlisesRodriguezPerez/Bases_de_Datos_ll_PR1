@@ -19,6 +19,9 @@ namespace model.entity
         private int cuantosSubastados;
         private int cuantosComprados;
         private bool esAdmin;
+        private string telefonoCelular;
+        private string telefonoCasa;
+        private string telefonoTrabajo;
 
 
         public Usuario() { }
@@ -30,8 +33,9 @@ namespace model.entity
         }
 
         //Constructor con todos los campos.
-        public Usuario(int pIdUsuario, string pNombreUsuario, string pPrimerApellido, string pSegundoApellido, string pAlias, 
-                        string pCorreo, string pPassword, int pCuantosSubastados, int pCuantosComprados, bool pEsAdmin)
+        public Usuario(int pIdUsuario, string pNombreUsuario, string pPrimerApellido, string pSegundoApellido, string pAlias,
+                        string pCorreo, string pPassword, int pCuantosSubastados, int pCuantosComprados, bool pEsAdmin, 
+                        string telefonoCelular, string telefonoCasa, string telefonoTrabajo)
         {
             this.idUsuario = pIdUsuario;
             this.nombreUsuario = pNombreUsuario;
@@ -43,6 +47,9 @@ namespace model.entity
             this.cuantosSubastados = pCuantosSubastados;
             this.cuantosComprados = pCuantosComprados;
             this.esAdmin = pEsAdmin;
+            this.telefonoCelular = telefonoCelular;
+            this.telefonoCasa = telefonoCasa;
+            this.telefonoTrabajo = telefonoTrabajo;
         }
 
         //getters and setters
@@ -56,5 +63,8 @@ namespace model.entity
         public int CuantosSubastados { get => cuantosSubastados; set => cuantosSubastados = value; }
         public int CuantosComprados { get => cuantosComprados; set => cuantosComprados = value; }
         public bool EsAdmin { get => esAdmin; set => esAdmin = value; }
+        public string TelefonoCelular { get => telefonoCelular; set => telefonoCelular = value; }
+        public string TelefonoCasa { get => telefonoCasa; set => telefonoCasa = value; }
+        public string TelefonoTrabajo { get => telefonoTrabajo; set => telefonoTrabajo = value; }
     }
 }

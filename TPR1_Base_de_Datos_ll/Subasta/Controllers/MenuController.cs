@@ -57,7 +57,7 @@ namespace Subasta.Controllers
             //List<CuentaAhorro> lista = objetoUsuario.findAllCuentaAhorro(Id);
             Usuario user = new Usuario(Id);
             string username = user.NombreUsuario;
-            return View();  //lista
+            return View(user);  //lista
         }
         [HttpPost]
         public ActionResult MenuNormal(Usuario user, int ID)

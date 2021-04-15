@@ -1,25 +1,32 @@
--- PROCEDURE: public.mostrarusuarios()
+-- FUNCTION: public.mostrarusuarios()
 
--- DROP PROCEDURE public.mostrarusuarios();
-CREATE OR REPLACE function mostrarUsuarios() returns 
-	table (
-		cedula bigint,
-		nombre varchar,
-		primerApellido varchar,
-		segundoApellido varchar,
-		aliass varchar,
-		correo varchar,
-		password varchar,
-		cuantosSubastados integer,
-		cuantosComprados integer,
-		esAdmin bool
-		
+-- DROP FUNCTION public.mostrarusuarios();
+
+CREATE OR REPLACE FUNCTION public.mostrarusuarios(
 	)
-AS
-$$
+    RETURNS TABLE(cedula bigint, 
+				  nombre character varying, 
+				  primerapellido character varying, 
+				  segundoapellido character varying, 
+				  aliass character varying, 
+				  correo character varying, 
+				  password character varying, 
+				  cuantossubastados integer, 
+				  cuantoscomprados integer, 
+				  esadmin boolean,
+				  telefonocelular varchar,
+				  telefonocasa varchar,
+				  telefonotrabajo varchar
+				  
+				  
+				 ) 
+    LANGUAGE 'sql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
 
-	
-	SELECT 
+AS $BODY$
+SELECT 
 		"Cedula",
 		"Nombre",
 		"PrimerApellido",
@@ -29,13 +36,12 @@ $$
 		"Password",
 		"CuantosSubastados",
 		"CuantosComprados",
-		"EsAdmin"
+		"EsAdmin",
+		"TelefonoCelular",
+		"TelefonoCasa",
+		"TelefonoTrabajo"
 	FROM "Usuarios"
+$BODY$;
 
-
-$$
-Language SQL
-
-
-
---SELECT mostrarUsuarios()
+--ALTER FUNCTION public.mostrarusuarios()
+    --OWNER TO postgres;

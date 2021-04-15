@@ -12,7 +12,10 @@ CREATE OR REPLACE FUNCTION public.editarusuario(
 	ppassword character varying,
 	pcuantossubastados integer,
 	pcuantoscomprados integer,
-	ptipousuario boolean)
+	ptipousuario boolean,
+	ptelefonocelular varchar,
+	ptelefonocasa varchar,
+	ptelefonotrabajo varchar)
     RETURNS void
     LANGUAGE 'sql'
     COST 100
@@ -30,10 +33,13 @@ SET
 		"Password" = pPassword,
 		"CuantosSubastados" = pCuantosSubastados,
 		"CuantosComprados" = pCuantosComprados,
-		"EsAdmin" = pTipoUsuario
+		"EsAdmin" = pTipoUsuario,
+		"TelefonoCelular" = pTelefonoCelular,
+		"TelefonoCasa" = pTelefonoCasa,
+		"TelefonoTrabajo" = pTelefonoTrabajo
 WHERE
 	pCedula = "Cedula";
 $BODY$;
 
---ALTER FUNCTION public.editarusuario(integer, character varying, character varying, character varying, character varying, character varying, character varying, integer, integer, boolean)
-  --  OWNER TO postgres;
+ALTER FUNCTION public.editarusuario(integer, character varying, character varying, character varying, character varying, character varying, character varying, integer, integer, boolean)
+    OWNER TO postgres;

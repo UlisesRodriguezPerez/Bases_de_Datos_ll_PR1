@@ -54,7 +54,10 @@ namespace model.dao
                         Password = read[6].ToString(),
                         CuantosSubastados = Convert.ToInt32(read[7].ToString()),
                         CuantosComprados = Convert.ToInt32(read[8].ToString()),
-                        EsAdmin = Convert.ToBoolean(read[9].ToString())
+                        EsAdmin = Convert.ToBoolean(read[9].ToString()),
+                        TelefonoCelular = read[10].ToString(),
+                        TelefonoCasa = read[11].ToString(),
+                        TelefonoTrabajo = read[12].ToString()
 
 
                     };
@@ -102,6 +105,9 @@ namespace model.dao
                     usuario.CuantosSubastados = Convert.ToInt32(read[7].ToString());
                     usuario.CuantosComprados = Convert.ToInt32(read[8].ToString());
                     usuario.EsAdmin = Convert.ToBoolean(read[9].ToString());
+                    usuario.TelefonoCelular = read[10].ToString();
+                    usuario.TelefonoCasa = read[11].ToString();
+                    usuario.TelefonoTrabajo = read[12].ToString();
                     if (usuario.EsAdmin == true)
                     {
                         result = "Admin";
@@ -147,8 +153,11 @@ namespace model.dao
             comando.Parameters.AddWithValue("pcorreo", objetoUsuario.Correo);
             comando.Parameters.AddWithValue("ppassword", objetoUsuario.Password);
             comando.Parameters.AddWithValue("ptipousuario", objetoUsuario.EsAdmin);
-            
-            objConexion.getConexion().Open();
+            comando.Parameters.AddWithValue("ptelefonocelular", objetoUsuario.TelefonoCelular);
+            comando.Parameters.AddWithValue("ptelefonocasa", objetoUsuario.TelefonoCasa);
+            comando.Parameters.AddWithValue("ptelefonotrabajo", objetoUsuario.TelefonoTrabajo);
+
+                objConexion.getConexion().Open();
             comando.ExecuteNonQuery();
                 //try { 
             }
@@ -187,6 +196,9 @@ namespace model.dao
                     objetoUsuario.CuantosSubastados = Convert.ToInt32(read[7].ToString());
                     objetoUsuario.CuantosComprados = Convert.ToInt32(read[8].ToString());
                     objetoUsuario.EsAdmin = Convert.ToBoolean(read[9].ToString());
+                    objetoUsuario.TelefonoCelular = read[10].ToString();
+                    objetoUsuario.TelefonoCasa = read[11].ToString();
+                    objetoUsuario.TelefonoTrabajo = read[12].ToString();
                 }
             }
             catch (Exception)
@@ -219,8 +231,10 @@ namespace model.dao
                 comando.Parameters.AddWithValue("pcuantossubastados", objetoUsuario.CuantosSubastados);
                 comando.Parameters.AddWithValue("pcuantoscomprados", objetoUsuario.CuantosComprados);
                 comando.Parameters.AddWithValue("ptipousuario", objetoUsuario.EsAdmin);
-
-                objConexion.getConexion().Open();
+                comando.Parameters.AddWithValue("ptelefonocelular", objetoUsuario.TelefonoCelular);
+                comando.Parameters.AddWithValue("ptelefonocasa", objetoUsuario.TelefonoCasa);
+                comando.Parameters.AddWithValue("ptelefonotrabajo", objetoUsuario.TelefonoTrabajo);
+            objConexion.getConexion().Open();
                 comando.ExecuteNonQuery();
             try
             {

@@ -1,10 +1,14 @@
-CREATE OR REPLACE FUNCTION validarusuario(
-		pcedula integer,
-		ppassword varchar
-	)
+-- FUNCTION: public.validarusuario(integer, character varying)
+
+-- DROP FUNCTION public.validarusuario(integer, character varying);
+
+CREATE OR REPLACE FUNCTION public.validarusuario(
+	pcedula integer,
+	ppassword character varying)
     RETURNS "Usuarios"
     LANGUAGE 'sql'
-
+    COST 100
+    VOLATILE PARALLEL UNSAFE
 AS $BODY$
 SELECT 
 		"Cedula",
@@ -16,11 +20,15 @@ SELECT
 		"Password",
 		"CuantosSubastados",
 		"CuantosComprados",
-		"EsAdmin"
+		"EsAdmin",
+		"TelefonoCelular",
+		"TelefonoCasa",
+		"TelefonoTrabajo"
 FROM 
 	"Usuarios"
 WHERE
 	pcedula = "Cedula" AND ppassword = "Password"
 $BODY$;
 
-SELECT * FROM "Usuarios"
+ALTER FUNCTION public.validarusuario(integer, character varying)
+    OWNER TO postgres;

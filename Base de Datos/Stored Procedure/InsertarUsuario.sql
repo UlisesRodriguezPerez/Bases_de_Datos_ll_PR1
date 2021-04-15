@@ -1,11 +1,25 @@
-CREATE OR REPLACE function InsertarUsuario(pCedula integer,pNombre varchar, pPrimerApellido varchar, pSegundoApellido varchar,
-										   pAlias varchar, pCorreo varchar, pPassword varchar, pTipoUsuario boolean
-										   
-										  ) 
-returns void
-AS
-$$
+-- FUNCTION: public.insertarusuario(integer, character varying, character varying, character varying, character varying, character varying, character varying, boolean)
 
+-- DROP FUNCTION public.insertarusuario(integer, character varying, character varying, character varying, character varying, character varying, character varying, boolean);
+
+CREATE OR REPLACE FUNCTION public.insertarusuario(
+	pcedula integer,
+	pnombre character varying,
+	pprimerapellido character varying,
+	psegundoapellido character varying,
+	palias character varying,
+	pcorreo character varying,
+	ppassword character varying,
+	ptipousuario boolean,
+	ptelefonocelular varchar,
+	ptelefonocasa varchar,
+	ptelefonotrabajo varchar
+)
+    RETURNS void
+    LANGUAGE 'sql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
 INSERT INTO "Usuarios"(
 		"Cedula",
 		"Nombre",
@@ -16,7 +30,11 @@ INSERT INTO "Usuarios"(
 		"Password",
 		"CuantosSubastados",
 		"CuantosComprados",
-		"EsAdmin"
+		"EsAdmin",
+		"TelefonoCelular",
+		"TelefonoCasa",
+		"TelefonoTrabajo"
+	
 	)
 	VALUES(
 		pCedula,
@@ -28,11 +46,12 @@ INSERT INTO "Usuarios"(
 		pPassword,
 		0,
 		0,
-		pTipoUsuario
+		pTipoUsuario,
+		pTelefonoCelular,
+		pTelefonoCasa,
+		pTelefonoTrabajo
 	);
-$$
-Language SQL
+$BODY$;
 
---SELECT public.InsertarUsuario(3,'3','3','3','3','3','3',false)
-
---SELECT * FROM "Usuarios"
+--ALTER FUNCTION public.insertarusuario(integer, character varying, character varying, character varying, character varying, character varying, character varying, boolean)
+  --  OWNER TO postgres;

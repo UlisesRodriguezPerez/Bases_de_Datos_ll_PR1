@@ -51,6 +51,24 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(model => model.TelefonoCelular, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.TelefonoCelular, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TelefonoCasa, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.TelefonoCasa, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TelefonoTrabajo, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.TelefonoTrabajo, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(model => model.EsAdmin, htmlAttributes: new { @class = "control-kabel col-md-2" })
         <div class="col-md-6">
             @Html.EditorFor(model => model.EsAdmin, new { htmlAttrbutes = new { @class = "form-control" } })

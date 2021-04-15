@@ -1,6 +1,13 @@
-CREATE OR REPLACE FUNCTION buscarUsuario(pId integer)
-    RETURNS "Usuarios"--TABLE(cedula bigint, nombre character varying, primerapellido character varying, segundoapellido character varying, aliass character varying, correo character varying, password character varying, cuantossubastados integer, cuantoscomprados integer, esadmin boolean) 
+-- FUNCTION: public.buscarusuario(integer)
+
+-- DROP FUNCTION public.buscarusuario(integer);
+
+CREATE OR REPLACE FUNCTION public.buscarusuario(
+	pid integer)
+    RETURNS "Usuarios"
     LANGUAGE 'sql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
 AS $BODY$
 SELECT 
 		"Cedula",
@@ -12,12 +19,16 @@ SELECT
 		"Password",
 		"CuantosSubastados",
 		"CuantosComprados",
-		"EsAdmin"
+		"EsAdmin",
+		"TelefonoCelular",
+		"TelefonoCasa",
+		"TelefonoTrabajo"
+		
 FROM 
 	"Usuarios"
 WHERE
-	pId = "Cedula";
-	
+	pId = "Cedula"
 $BODY$;
 
-SELECT buscarUsuario(1)
+ALTER FUNCTION public.buscarusuario(integer)
+    OWNER TO postgres;
