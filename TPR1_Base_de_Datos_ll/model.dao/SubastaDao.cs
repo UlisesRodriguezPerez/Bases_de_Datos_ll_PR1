@@ -242,22 +242,17 @@ namespace model.dao
 
 
         }
-        public void subastarItem(Usuario objUsuario)
+        public void crearComentarioAComprador(Subastas subasta)
         {
             try
             {
 
-                comando = new NpgsqlCommand("subastaritem", objConexion.getConexion());
+                comando = new NpgsqlCommand("insertarComentarioAComprador", objConexion.getConexion());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idusuario", objUsuario.IdUsuario);
-                comando.Parameters.AddWithValue("subcategoria", objUsuario.NombreSubCategoria);
-                comando.Parameters.AddWithValue("descripcion", objUsuario.Descripcion);
-                comando.Parameters.AddWithValue("formaentrega", objUsuario.FormaEntrega);
-                comando.Parameters.AddWithValue("precioinicial", objUsuario.PrecioInicial);
-                comando.Parameters.AddWithValue("fechainicio", objUsuario.FechaInicio);
-                comando.Parameters.AddWithValue("fechafinal", objUsuario.FechaFinal);
-
+                comando.Parameters.AddWithValue("idsubasta", subasta.IdSubasta);
+                comando.Parameters.AddWithValue("comentario", subasta.ComentarioAVendedor);
+                comando.Parameters.AddWithValue("evaluacion", subasta.Evaluacion);
 
                 objConexion.getConexion().Open();
                 comando.ExecuteNonQuery();
@@ -272,8 +267,101 @@ namespace model.dao
                 objConexion.getConexion().Close();
                 objConexion.cerrarConexion();
             }
+        }
+        public void subastarItem(Subastas subasta)
+        {
+            
+
+                comando = new NpgsqlCommand("subastarItem", objConexion.getConexion());
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("idusuario", subasta.IdUsuarioActual);
+                comando.Parameters.AddWithValue("subcategoria", subasta.NombreSubCategoria);
+                comando.Parameters.AddWithValue("descripcion", subasta.Descripcion);
+                comando.Parameters.AddWithValue("formaentrega", subasta.FormaEntrega);
+                comando.Parameters.AddWithValue("precioinicial", subasta.PrecioInicial);
+                comando.Parameters.AddWithValue("fechainicio", subasta.FechaInicio);
+                comando.Parameters.AddWithValue("fechafinal", subasta.FechaFinal);
 
 
+                objConexion.getConexion().Open();
+                comando.ExecuteNonQuery();
+            //try { 
+            try
+            { }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+        }
+        public bool find(Subastas objSubasta)
+        {
+            bool hayRegistros;
+            try
+            {
+                comando = new NpgsqlCommand("buscarsubasta", objConexion.getConexion());
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("pidsubasta", objSubasta.IdSubasta);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                hayRegistros = read.Read();
+                if (hayRegistros)
+                {
+                    objSubasta.IdSubasta = Convert.ToInt32(read[0].ToString());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return hayRegistros;
+        }
+        public List<Subastas> infoVendedor(int idUsuario)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarinfovendedor", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                comando.Parameters.AddWithValue("pcedula", idUsuario);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        NombreComprador = read[0].ToString(),
+                        NombreVendedor = read[1].ToString(),
+                        ComentarioAVendedor = read[2].ToString(),
+                        Evaluacion = Convert.ToInt32(read[3].ToString()),
+
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
         }
     }
 }

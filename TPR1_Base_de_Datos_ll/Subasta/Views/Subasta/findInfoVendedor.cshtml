@@ -1,0 +1,27 @@
+﻿@model List<model.entity.Subastas>
+@{
+    ViewBag.Title = "Subastadas";
+}
+
+
+<div class="container">
+    <table class="table ">
+        <tr class="btn-primary">
+            <th>nombrecomprador</th>
+            <th>nombrevendedor</th>
+            <th>comentario</th>
+            <th>evaluación</th>
+
+        </tr>
+        @foreach (var objetoSubasta in Model)
+        {
+            <tr>
+                <td>@objetoSubasta.NombreComprador</td>
+                <td>@objetoSubasta.NombreVendedor</td>
+                <td>@objetoSubasta.ComentarioAVendedor</td>
+                <td>@objetoSubasta.Evaluacion</td>
+            </tr>
+        }
+    </table>
+</div>
+

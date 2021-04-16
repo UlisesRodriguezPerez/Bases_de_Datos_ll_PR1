@@ -1,4 +1,4 @@
-﻿@model model.entity.Usuario
+﻿@model model.entity.Subastas
 
 @{
     ViewBag.Title = "Subastar";
@@ -10,9 +10,9 @@
 <div class="form-horizontal">
 
     <div class="form-group">
-        @Html.LabelFor(model => model.IdUsuario, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        @Html.LabelFor(model => model.IdUsuarioActual, htmlAttributes: new { @class = "control-kabel col-md-2" })
         <div class="col-md-6">
-            @Html.DisplayFor(model => model.IdUsuario, new { htmlAttrbutes = new { @class = "form-control" } })
+            @Html.DisplayFor(model => model.IdUsuarioActual, new { htmlAttrbutes = new { @class = "form-control" } })
         </div>
     </div>
     <div class="form-group">

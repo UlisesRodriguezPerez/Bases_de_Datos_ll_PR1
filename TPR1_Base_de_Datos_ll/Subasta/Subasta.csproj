@@ -292,6 +292,8 @@
     <Content Include="Views\Subasta\Compradas.cshtml" />
     <Content Include="Views\Subasta\comentarioAVendedor.cshtml" />
     <Content Include="Views\Subasta\SubastarItem.cshtml" />
+    <Content Include="Views\Subasta\comentarioAComprador.cshtml" />
+    <Content Include="Views\Subasta\findInfoVendedor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

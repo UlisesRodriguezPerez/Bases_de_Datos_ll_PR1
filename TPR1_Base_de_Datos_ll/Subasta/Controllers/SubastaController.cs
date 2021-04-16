@@ -44,28 +44,76 @@ namespace Subasta.Controllers
             return View(lista);
         }
         [HttpGet]
-        public ActionResult comentarioAVendedor()
+        public ActionResult comentarioAVendedor(int Id)
         {
-            return View();
+            Subastas subasta = new Subastas(Id);
+            //objetoSubasta.find(subasta);
+            subasta.IdSubasta = Id;
+            return View(subasta);
         }
 
         [HttpPost]
-        public ActionResult comentarioAVendedor(Subastas subasta)
+        public ActionResult comentarioAVendedor(Subastas subasta, int Id)
         {
+            subasta.IdSubasta = Id;
+            
             objetoSubasta.crearComentarioAVendedor(subasta);
+            return RedirectToAction("Inicio/"+Id);
+        }
+
+
+        [HttpGet]
+        public ActionResult comentarioAComprador(int Id)
+        {
+            Subastas subasta = new Subastas(Id);
+            //objetoSubasta.find(subasta);
+            subasta.IdSubasta = Id;
+            return View(subasta);
+        }
+
+        [HttpPost]
+        public ActionResult comentarioAComprador(Subastas subasta, int Id)
+        {
+            subasta.IdSubasta = Id;
+
+            objetoSubasta.crearComentarioAComprador(subasta);
             return RedirectToAction("Inicio");
         }
         [HttpGet]
-        public ActionResult SubastarItem()
+        public ActionResult SubastarItem(int Id)
         {
-            return View();
+            Subastas subasta = new Subastas(Id);
+            //objetoSubasta.find(subasta);
+            subasta.IdUsuarioActual = Id;
+            return View(subasta);
         }
-
-
-        public ActionResult SubastarItem(Usuario objUsuario)
+        public ActionResult SubastarItem(Subastas subasta, int Id)
         {
-            objetoSubasta.subastarItem(objUsuario);
-            return RedirectToAction("Inicio");
+            subasta.IdUsuarioActual = Id;
+            objetoSubasta.subastarItem(subasta);
+            return RedirectToAction("Inicio/"+Id);
+        }
+        //[HttpGet]
+        //public ActionResult findInfoVendedor(int ID)
+        //{
+           
+        //    Subastas objSubasta = new Subastas(ID);
+        //    objetoSubasta.find(objSubasta);
+        //    return View(objSubasta);
+        //}
+
+        //[HttpPost]
+        //public ActionResult findInfoVendedor(string ID)
+        //{
+        //    return RedirectToAction("Inicio" + ID);
+        //}
+
+
+        [HttpGet]
+        public ActionResult findInfoVendedor(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.infoVendedor(Id);
+            return View(lista);
         }
     }
 }
