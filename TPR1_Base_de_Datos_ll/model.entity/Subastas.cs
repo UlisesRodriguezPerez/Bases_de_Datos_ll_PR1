@@ -26,6 +26,9 @@ namespace model.entity
         private string comentarioAVendedor;
         private string comentarioAComprador;
         private int evaluacion;
+        private string aliasComprador;
+        private string aliasVendedor;
+        private int idUsuarioActual;
 
 
         public Subastas() { }
@@ -40,7 +43,8 @@ namespace model.entity
         public Subastas(int idSubasta, int idVendedor, int idComprador, int idSubCategoria,
                         string descripcion, string formaEntrega, decimal precioInicial,
                         DateTime fechaInicio, DateTime fechaFinal, string nombreVendedor, string nombreComprador,
-                        string nombreSubCategoria, string nombreCategoria, int idCategoria, string comentarioAVendedor, string comentarioAComprador, int evaluacion )
+                        string nombreSubCategoria, string nombreCategoria, int idCategoria, string comentarioAVendedor, string comentarioAComprador, int evaluacion,
+                        string aliasComprador, string aliasVendedor, int idUsuarioActual)
         {
             this.idSubasta = idSubasta;
             this.idVendedor = idVendedor;
@@ -59,6 +63,9 @@ namespace model.entity
             this.comentarioAVendedor = comentarioAVendedor;
             this.comentarioAComprador = comentarioAComprador;
             this.evaluacion = evaluacion;
+            this.aliasComprador = aliasComprador;
+            this.aliasVendedor = aliasVendedor;
+            this.idUsuarioActual = idUsuarioActual;
         }
 
         public int IdSubasta { get => idSubasta; set => idSubasta = value; }
@@ -78,5 +85,8 @@ namespace model.entity
         public string ComentarioAVendedor { get => comentarioAVendedor; set => comentarioAVendedor = value; }
         public string ComentarioAComprador { get => comentarioAComprador; set => comentarioAComprador = value; }
         public int Evaluacion { get => evaluacion; set => evaluacion = value; }
+        public string AliasComprador { get => aliasComprador; set => aliasComprador = value; }
+        public string AliasVendedor { get => aliasVendedor; set => aliasVendedor = value; }
+        public int IdUsuarioActual { get => idUsuarioActual; set => idUsuarioActual = value; }
     }
 }

@@ -23,6 +23,13 @@ namespace model.entity
         private string telefonoCasa;
         private string telefonoTrabajo;
 
+        private string nombreSubCategoria; //OPCION PARA SALIR DEL APURO.
+        private string descripcion;
+        private string formaEntrega;
+        private decimal precioInicial;
+        private DateTime fechaInicio;
+        private DateTime fechaFinal;
+
 
         public Usuario() { }
 
@@ -34,8 +41,9 @@ namespace model.entity
 
         //Constructor con todos los campos.
         public Usuario(int pIdUsuario, string pNombreUsuario, string pPrimerApellido, string pSegundoApellido, string pAlias,
-                        string pCorreo, string pPassword, int pCuantosSubastados, int pCuantosComprados, bool pEsAdmin, 
-                        string telefonoCelular, string telefonoCasa, string telefonoTrabajo)
+                        string pCorreo, string pPassword, int pCuantosSubastados, int pCuantosComprados, bool pEsAdmin,
+                        string telefonoCelular, string telefonoCasa, string telefonoTrabajo, string nombreSubCategoria, string descripcion, 
+                        string formaEntrega, decimal precioInicial, DateTime fechaInicio, DateTime fechaFinal)
         {
             this.idUsuario = pIdUsuario;
             this.nombreUsuario = pNombreUsuario;
@@ -50,6 +58,12 @@ namespace model.entity
             this.telefonoCelular = telefonoCelular;
             this.telefonoCasa = telefonoCasa;
             this.telefonoTrabajo = telefonoTrabajo;
+            this.nombreSubCategoria = nombreSubCategoria;
+            this.descripcion = descripcion;
+            this.formaEntrega = formaEntrega;
+            this.precioInicial = precioInicial;
+            this.fechaInicio = fechaInicio;
+            this.fechaFinal = fechaFinal;
         }
 
         //getters and setters
@@ -66,5 +80,11 @@ namespace model.entity
         public string TelefonoCelular { get => telefonoCelular; set => telefonoCelular = value; }
         public string TelefonoCasa { get => telefonoCasa; set => telefonoCasa = value; }
         public string TelefonoTrabajo { get => telefonoTrabajo; set => telefonoTrabajo = value; }
+        public string NombreSubCategoria { get => nombreSubCategoria; set => nombreSubCategoria = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public string FormaEntrega { get => formaEntrega; set => formaEntrega = value; }
+        public decimal PrecioInicial { get => precioInicial; set => precioInicial = value; }
+        public DateTime FechaInicio { get => fechaInicio; set => fechaInicio = value; }
+        public DateTime FechaFinal { get => fechaFinal; set => fechaFinal = value; }
     }
 }

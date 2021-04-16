@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using model.dao;
 using model.entity;
-using model.dao;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Subasta.Controllers
 {
@@ -17,11 +14,15 @@ namespace Subasta.Controllers
             objetoSubasta = new SubastaDao();
         }
 
-        // GET: Subasta
-        
+        [HttpPost]
         public ActionResult Inicio()
         {
-            List<Subastas> lista = objetoSubasta.buscarSubastasActivas();
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Inicio(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.buscarSubastasActivas(Id);
             //objetoSubasta.Name = name;
             return View(lista);
         }
@@ -52,6 +53,18 @@ namespace Subasta.Controllers
         public ActionResult comentarioAVendedor(Subastas subasta)
         {
             objetoSubasta.crearComentarioAVendedor(subasta);
+            return RedirectToAction("Inicio");
+        }
+        [HttpGet]
+        public ActionResult SubastarItem()
+        {
+            return View();
+        }
+
+
+        public ActionResult SubastarItem(Usuario objUsuario)
+        {
+            objetoSubasta.subastarItem(objUsuario);
             return RedirectToAction("Inicio");
         }
     }
