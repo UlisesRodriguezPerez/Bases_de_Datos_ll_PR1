@@ -1,0 +1,47 @@
+﻿@model model.entity.Puja
+@{
+    ViewBag.Title = "Pujar";
+}
+
+<h1>Pujar por un item</h1>
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdSubasta, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.IdSubasta, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdUsuarioActual, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.IdUsuarioActual, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Incremento, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Incremento, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PrecioFinal, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PrecioFinal, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaSubida, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FechaSubida, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-actions col-md-offset-2">
+        <input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar" />
+        @*<a class="btn btn-primary" href="~/Usuario">Regresar</a>*@
+    </div>
+</div>
+}

@@ -44,12 +44,33 @@
         <td>@objetoSubasta.FechaFinal</td>
 
 
-        <td>
+        
 
-        <!--  PENDEINTE EL VER  -->
+            <!--  PENDEINTE EL VER  -->
         <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
-        <td><a class="btn btn-primary" href="~/Subasta/pujar/@objetoSubasta.IdSubasta">Pujar</a></td>
-        @*<td><a class="btn btn-danger" href="~/Subasta/delete/@objetoSubasta.IdSubasta">Eliminar</a></td>*@
+        @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
+        <td>
+            <form action="~/Puja/Puja" method="post">
+                <div class="agile-field-txt" style="display: none">
+                    <label><i class="fa fa-user" aria-hidden="true"></i> IdSubasta </label>
+                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                    @Html.DisplayFor(model => objetoSubasta.IdSubasta, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
+                </div>
+                <div class="agile-field-txt" style="display: none">
+                    <label><i class="fa fa-user" aria-hidden="true"></i> IdUsuarioActual </label>
+                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                    @Html.DisplayFor(model => objetoSubasta.IdUsuarioActual, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
+                </div>
+                <div class="agile-field-txt" >
+                    <label><i class="fa fa-user" aria-hidden="true"></i> Incremento </label>
+                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                    @Html.EditorFor(model => objetoSubasta.Incremento, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
+                </div>
+                <input type="submit" value="PUJAR">
+            </form>
+        </td>
+        
+            @*<td><a class="btn btn-danger" href="~/Subasta/delete/@objetoSubasta.IdSubasta">Eliminar</a></td>*@
     </tr>
         }
     </table>
