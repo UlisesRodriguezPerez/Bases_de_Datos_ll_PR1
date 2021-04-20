@@ -115,5 +115,19 @@ namespace Subasta.Controllers
             List<Subastas> lista = objetoSubasta.infoVendedor(Id);
             return View(lista);
         }
+        [HttpGet]
+        public ActionResult VariableSistemas()
+        {
+            Subastas subasta = new Subastas();
+            objetoSubasta.findVariablesSistema(subasta);
+            return View(subasta);
+        }
+
+        [HttpPost]
+        public ActionResult VariableSistemas(Subastas subasta)
+        {
+            objetoSubasta.updateVarialeSistemas(subasta);
+            return RedirectToAction("../Menu/MenuAdmin/");
+        }
     }
 }

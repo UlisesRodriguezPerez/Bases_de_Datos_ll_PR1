@@ -34,6 +34,9 @@ namespace model.entity
         private decimal precioFinal;
         private DateTime fechaSubida;
 
+        private int porcentajeMejora;
+        private decimal precioMinimo;
+
 
         public Subastas() { }
 
@@ -48,7 +51,8 @@ namespace model.entity
                         string descripcion, string formaEntrega, decimal precioInicial,
                         DateTime fechaInicio, DateTime fechaFinal, string nombreVendedor, string nombreComprador,
                         string nombreSubCategoria, string nombreCategoria, int idCategoria, string comentarioAVendedor, string comentarioAComprador, int evaluacion,
-                        string aliasComprador, string aliasVendedor, int idUsuarioActual, decimal incremento, decimal precioFinal, DateTime fechaSubida)
+                        string aliasComprador, string aliasVendedor, int idUsuarioActual, decimal incremento, decimal precioFinal, DateTime fechaSubida, int porcentajeMejora, 
+                        decimal precioMinimo)
         {
             this.idSubasta = idSubasta;
             this.idVendedor = idVendedor;
@@ -73,6 +77,8 @@ namespace model.entity
             this.incremento = incremento;
             this.precioFinal = precioFinal;
             this.fechaSubida = fechaSubida;
+            this.porcentajeMejora = porcentajeMejora;
+            this.precioMinimo = precioMinimo;
         }
 
         public int IdSubasta { get => idSubasta; set => idSubasta = value; }
@@ -98,5 +104,7 @@ namespace model.entity
         public decimal Incremento { get => incremento; set => incremento = value; }
         public decimal PrecioFinal { get => precioFinal; set => precioFinal = value; }
         public DateTime FechaSubida { get => fechaSubida; set => fechaSubida = value; }
+        public int PorcentajeMejora { get => porcentajeMejora; set => porcentajeMejora = value; }
+        public decimal PrecioMinimo { get => precioMinimo; set => precioMinimo = value; }
     }
 }

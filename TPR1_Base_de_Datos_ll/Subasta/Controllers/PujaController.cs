@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using model.dao;
 using model.entity;
 
@@ -57,9 +59,18 @@ namespace Subasta.Controllers
             //puja.IdSubasta = Id;
             //subasta = new Subastas(Id);
             //puja.IdUsuarioActual = subasta.IdUsuarioActual;
-
-            objetoPuja.pujar(puja);
-            return RedirectToAction("Inicio/" + Id);
+            //decimal minimoIncremento = objetoPuja.buscarMinimoIncremento(puja);
+            decimal minimoIncremento = 100000;
+            if (puja.Incremento >= minimoIncremento){
+                objetoPuja.pujar(puja);
+            }
+            else
+            {
+                
+            }
+            
+            return RedirectToAction("vdf/" + Id);
         }
+
     }
 }

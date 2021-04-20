@@ -59,6 +59,7 @@ namespace model.dao
                         PrecioInicial = Convert.ToDecimal(read[11].ToString()),
                         FechaInicio = Convert.ToDateTime(read[12].ToString()),
                         FechaFinal = Convert.ToDateTime(read[13].ToString()),
+                        PrecioMinimo = Convert.ToDecimal(read[14].ToString()),
                         IdUsuarioActual = Id,
                     };
                     listaSubastas.Add(objetoSubasta);
@@ -362,6 +363,62 @@ namespace model.dao
                 objConexion.cerrarConexion();
             }
             return listaSubastas;
+        }
+        public bool findVariablesSistema(Subastas subasta)
+        {
+            bool hayRegistros;
+            try
+            {
+                comando = new NpgsqlCommand("buscarVariablesSistema", objConexion.getConexion());
+                comando.CommandType = CommandType.StoredProcedure;
+                //comando.Parameters.AddWithValue("pid", objetoUsuario.IdUsuario);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                hayRegistros = read.Read();
+                if (hayRegistros)
+                {
+                    subasta.PorcentajeMejora = Convert.ToInt32(read[0].ToString());
+                    subasta.PrecioMinimo = Convert.ToDecimal(read[1].ToString());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return hayRegistros;
+        }
+        public void updateVarialeSistemas(Subastas subasta)
+        {
+            //try
+            //{
+
+            comando = new NpgsqlCommand("editarVariablesSistema", objConexion.getConexion());
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("porcentajemejora", subasta.PorcentajeMejora);
+            comando.Parameters.AddWithValue("preciominimo", subasta.PrecioMinimo);
+
+     
+            objConexion.getConexion().Open();
+            comando.ExecuteNonQuery();
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
         }
     }
 }

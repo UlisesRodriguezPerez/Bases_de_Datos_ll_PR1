@@ -56,9 +56,37 @@ namespace model.dao
             {
                 objConexion.getConexion().Close();
                 objConexion.cerrarConexion();
+            }   
+        }
+        public Decimal buscarMinimoIncremento(Puja puja)
+        {
+            bool hayRegistros;
+            int precioMinimo = 0;
+            try
+            {
+                comando = new NpgsqlCommand("obtenerPrecioMinimoPuja", objConexion.getConexion());
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("pidsubasta", puja.IdSubasta);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                hayRegistros = read.Read();
+                if (hayRegistros)
+                {
+                    precioMinimo =  Convert.ToInt32(read[0].ToString());
+
+
+                }
             }
-
-
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return precioMinimo;
         }
     }
 }

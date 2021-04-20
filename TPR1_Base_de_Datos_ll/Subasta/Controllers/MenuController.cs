@@ -19,27 +19,40 @@ namespace Subasta.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public ActionResult Verify(Usuario usuario)
         {
-
-            string tipo = objetoUsuario.verificar(usuario);
-            //System.Diagnostics.Debug.WriteLine(tipo);
-            if (tipo == "Admin")
+            try
             {
-                return RedirectToAction("/MenuAdmin/" + usuario.IdUsuario);
+                string tipo = objetoUsuario.verificar(usuario);
+                //System.Diagnostics.Debug.WriteLine(tipo);
+                if (tipo == "Admin")
+                {
+                    return RedirectToAction("/MenuAdmin/" + usuario.IdUsuario);
+                }
+                else if (tipo == "Normal")
+                {
+                    //user = new Usuario();
+                    return RedirectToAction("/MenuNormal/" + usuario.IdUsuario);
+                }
+                else
+                {
+                    usuario = new Usuario();
+                    return RedirectToAction("/Inicio/");
+                }
             }
-            else if (tipo == "Normal")
+            catch
             {
-                //user = new Usuario();
-                return RedirectToAction("/MenuNormal/" + usuario.IdUsuario);
-            }
-            else
-            {
-                usuario = new Usuario();
                 return RedirectToAction("/Inicio/");
             }
         }

@@ -26,53 +26,70 @@
         </tr>
         @foreach (var objetoSubasta in Model)
         {
-    <tr>
-        <td>@objetoSubasta.IdUsuarioActual</td>
-        <td>@objetoSubasta.IdSubasta</td>
-        <td>@objetoSubasta.IdVendedor</td>
-        <td>@objetoSubasta.IdComprador</td>
-        <td>@objetoSubasta.IdSubCategoria</td>
-        <td>@objetoSubasta.IdCategoria</td>
-        <td>@objetoSubasta.AliasComprador</td>
-        <td>@objetoSubasta.AliasVendedor</td>
-        <td>@objetoSubasta.NombreCategoria</td>
-        <td>@objetoSubasta.NombreSubCategoria</td>
-        <td>@objetoSubasta.Descripcion</td>
-        <td>@objetoSubasta.FormaEntrega</td>
-        <td>@objetoSubasta.PrecioInicial</td>
-        <td>@objetoSubasta.FechaInicio</td>
-        <td>@objetoSubasta.FechaFinal</td>
+            <tr>
+                <td>@objetoSubasta.IdUsuarioActual</td>
+                <td>@objetoSubasta.IdSubasta</td>
+                <td>@objetoSubasta.IdVendedor</td>
+                <td>@objetoSubasta.IdComprador</td>
+                <td>@objetoSubasta.IdSubCategoria</td>
+                <td>@objetoSubasta.IdCategoria</td>
+                <td>@objetoSubasta.AliasComprador</td>
+                <td>@objetoSubasta.AliasVendedor</td>
+                <td>@objetoSubasta.NombreCategoria</td>
+                <td>@objetoSubasta.NombreSubCategoria</td>
+                <td>@objetoSubasta.Descripcion</td>
+                <td>@objetoSubasta.FormaEntrega</td>
+                <td>@objetoSubasta.PrecioInicial</td>
+                <td>@objetoSubasta.FechaInicio</td>
+                <td>@objetoSubasta.FechaFinal</td>
 
 
-        
 
-            <!--  PENDEINTE EL VER  -->
-        <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
-        @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
-        <td>
-            <form action="~/Puja/Puja" method="post">
-                <div class="agile-field-txt" style="display: none">
-                    <label><i class="fa fa-user" aria-hidden="true"></i> IdSubasta </label>
-                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
-                    @Html.DisplayFor(model => objetoSubasta.IdSubasta, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
-                </div>
-                <div class="agile-field-txt" style="display: none">
-                    <label><i class="fa fa-user" aria-hidden="true"></i> IdUsuarioActual </label>
-                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
-                    @Html.DisplayFor(model => objetoSubasta.IdUsuarioActual, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
-                </div>
-                <div class="agile-field-txt" >
-                    <label><i class="fa fa-user" aria-hidden="true"></i> Incremento </label>
-                    <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
-                    @Html.EditorFor(model => objetoSubasta.Incremento, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
-                </div>
-                <input type="submit" value="PUJAR">
-            </form>
-        </td>
-        
-            @*<td><a class="btn btn-danger" href="~/Subasta/delete/@objetoSubasta.IdSubasta">Eliminar</a></td>*@
-    </tr>
+
+                <!--  PENDEINTE EL VER  -->
+                <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
+                @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
+                <td>
+                    <form action="~/Puja/Pujar" method="post">
+                        <div class="agile-field-txt" style="display: none">
+                            <label><i class="fa fa-user" aria-hidden="true"></i> IdSubasta </label>
+                            <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                            @Html.DisplayFor(model => objetoSubasta.IdSubasta, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
+                        </div>
+                        <div class="agile-field-txt" style="display: none">
+                            <label><i class="fa fa-user" aria-hidden="true"></i> IdUsuarioActual </label>
+                            <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                            @Html.DisplayFor(model => objetoSubasta.IdUsuarioActual, new { htmlAttributes = new { @type = "text", @name = "name", @placeholder = " Usuario", required = "" } })
+                        </div>
+                        <div class="agile-field-txt">
+                            <label><i class="fa fa-user" aria-hidden="true"></i> Incremento </label>
+                            <!--<input type="text" name="name" placeholder=" Usuario" required="" />-->
+                            @Html.EditorFor(model => objetoSubasta.PrecioMinimo, new { htmlAttributes = new { @type = "number", @name = "name", @placeholder = " Incremento", required = "", min = @objetoSubasta.PrecioMinimo } })
+                        @*<input type="number" value="" tabindex="1" style="height:auto;" name="FirstName" min=@objetoSubasta.PrecioMinimo id="FirstName"  data-val-regex="Invalid First Name" data-val-length-max="100" data-val-length="The field FirstName must be a string with a maximum length of 100." data-val="true" class="textfield ui-input-text ui-body-d ui-corner-all ui-shadow-inset valid">*@
+                        </div>
+
+                        <input type="submit" value="PUJAR">
+                    </form>
+                </td>
+            </tr>
         }
     </table>
+    @*<script>
+
+                function guardar() {
+                    var cantidad = @Model.Count();
+                    //var indice = (@Model.Sum(j => j.)) / cantidad;
+                    var x = @Model.Sum(i => i.Porcentaje);
+                    if (x == "100" && cantidad < 4) {
+                        toastr.success(" verificados con éxito", "Guardado con éxito");
+
+                        //document.write("<a class='btn btn - primary' href='/Menu/MenuNormal'>Volver al menu de cuentas.</a>");
+                    }
+                    else {
+                        toastr.warning("No cumple con el 100% en la distribución de porcentajes.", "Advertencia");
+                    }
+            }
+
+        </script>*@
 </div>
 

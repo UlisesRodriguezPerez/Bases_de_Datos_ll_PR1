@@ -1,0 +1,30 @@
+﻿@model model.entity.Subastas
+@{
+    ViewBag.Title = "Actualizar variables sistema";
+}
+
+<h1>Actualizar Variables Sistema</h1>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PorcentajeMejora, htmlAttributes: new { @class = "control-kabel col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PorcentajeMejora, new { htmlAttrbutes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioMinimo, htmlAttributes: new { @class = "control-kabel col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PrecioMinimo, new { htmlAttrbutes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+        <div class="form-actions col-md-offset-2">
+            <input class="btn btn-primary" type="submit" name="btnGuardar" value="Actualizar" />
+            <a class="btn btn-primary" href="~/Menu/MenuAdmin">Regresar</a>
+        </div>
+    </div>
+}
