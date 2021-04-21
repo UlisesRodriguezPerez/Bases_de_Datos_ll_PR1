@@ -30,7 +30,7 @@ namespace model.dao
             objConexionOracle = ConexionOracle.saberEstado();
         }
 
-        public void pujar(Puja puja)
+        public void pujar( decimal incremento, int idSubasta, int idUsuario)
         {
             try
             {
@@ -38,11 +38,11 @@ namespace model.dao
                 comando = new NpgsqlCommand("pujar", objConexion.getConexion());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idsubasta", puja.IdSubasta);
-                comando.Parameters.AddWithValue("idusuariopujador", puja.IdUsuarioActual);
-                comando.Parameters.AddWithValue("incremento", puja.Incremento);
-                comando.Parameters.AddWithValue("preciofinal", puja.PrecioFinal);
-                comando.Parameters.AddWithValue("fechasubida", puja.FechaSubida);
+                comando.Parameters.AddWithValue("idsubasta", idSubasta);
+                comando.Parameters.AddWithValue("idusuariopujador", idUsuario);
+                comando.Parameters.AddWithValue("incremento", incremento);
+                //comando.Parameters.AddWithValue("preciofinal", puja.PrecioFinal);
+                //comando.Parameters.AddWithValue("fechasubida", puja.FechaSubida);
 
                 objConexion.getConexion().Open();
                 comando.ExecuteNonQuery();

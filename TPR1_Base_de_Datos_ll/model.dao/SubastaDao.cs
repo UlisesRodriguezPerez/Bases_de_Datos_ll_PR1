@@ -60,6 +60,7 @@ namespace model.dao
                         FechaInicio = Convert.ToDateTime(read[12].ToString()),
                         FechaFinal = Convert.ToDateTime(read[13].ToString()),
                         PrecioMinimo = Convert.ToDecimal(read[14].ToString()),
+                        PrecioFinal = Convert.ToDecimal(read[15].ToString()),
                         IdUsuarioActual = Id,
                     };
                     listaSubastas.Add(objetoSubasta);

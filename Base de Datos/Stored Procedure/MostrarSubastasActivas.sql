@@ -4,10 +4,12 @@
 
 CREATE OR REPLACE FUNCTION public.mostrarsubastasactivas(
 	)
-    RETURNS TABLE(idsubasta bigint, idvendedor bigint, idcomprador bigint, idsubcategoria bigint, idcategoria bigint, 
-				  nombrecomprador character varying, nombrevendedor character varying, nombrecategoria character varying, 
-				  nombresubcategoria character varying, descripcion character varying, formaentrega character varying, 
-				  precioinicial real, fechainicio date, fechafinal date,incremento real) 
+    RETURNS TABLE(idsubasta bigint, idvendedor bigint, idcomprador bigint, 
+				  idsubcategoria bigint, idcategoria bigint, 
+				  nombrecomprador character varying, nombrevendedor character varying, 
+				  nombrecategoria character varying, nombresubcategoria character varying, 
+				  descripcion character varying, formaentrega character varying, precioinicial real, 
+				  fechainicio date, fechafinal date, incremento real, montoFinal real) 
     LANGUAGE 'sql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -41,7 +43,8 @@ SELECT
 		S."PrecioInicial",
 		S."FechaInicio",
 		S."FechaFinal",
-		Pu."Incremento"
+		Pu."Incremento",
+		Pu."PrecioFinal"
 
 FROM 
 	"Subasta"  S
@@ -52,15 +55,8 @@ INNER JOIN "Usuarios"  UC ON UC."Cedula" = S."IdComprador"
 INNER JOIN "Pujas" Pu ON Pu."IdSubasta" = S."IdSubasta"
 
 WHERE
-	current_date >= S."FechaInicio" AND current_date <= S."FechaFinal";
-
+	current_date >= S."FechaInicio" AND current_date <= S."FechaFinal" AND Pu."PujaMasAlta" = true;
 $BODY$;
 
 ALTER FUNCTION public.mostrarsubastasactivas()
     OWNER TO postgres;
-	
-
-
---SELECT mostrarsubastasactivas();
-
-
