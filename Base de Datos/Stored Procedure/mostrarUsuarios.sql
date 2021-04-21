@@ -4,22 +4,7 @@
 
 CREATE OR REPLACE FUNCTION public.mostrarusuarios(
 	)
-    RETURNS TABLE(cedula bigint, 
-				  nombre character varying, 
-				  primerapellido character varying, 
-				  segundoapellido character varying, 
-				  aliass character varying, 
-				  correo character varying, 
-				  password character varying, 
-				  cuantossubastados integer, 
-				  cuantoscomprados integer, 
-				  esadmin boolean,
-				  telefonocelular varchar,
-				  telefonocasa varchar,
-				  telefonotrabajo varchar
-				  
-				  
-				 ) 
+    RETURNS TABLE(cedula bigint, nombre character varying, primerapellido character varying, segundoapellido character varying, aliass character varying, correo character varying, password character varying, cuantossubastados integer, cuantoscomprados integer, esadmin boolean, telefonocelular character varying, telefonocasa character varying, telefonotrabajo character varying) 
     LANGUAGE 'sql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -41,7 +26,8 @@ SELECT
 		"TelefonoCasa",
 		"TelefonoTrabajo"
 	FROM "Usuarios"
+WHERE "Cedula" <> 0;
 $BODY$;
 
---ALTER FUNCTION public.mostrarusuarios()
-    --OWNER TO postgres;
+ALTER FUNCTION public.mostrarusuarios()
+    OWNER TO postgres;

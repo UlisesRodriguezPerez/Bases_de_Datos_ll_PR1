@@ -78,6 +78,54 @@ namespace model.dao
             }
             return listaSubastas;
         }
+        public List<Subastas> buscarSubastasVencidas(int Id)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarsubastasvencidas", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        IdSubasta = Convert.ToInt32(read[0].ToString()),
+                        IdVendedor = Convert.ToInt32(read[1].ToString()),
+                        IdComprador = Convert.ToInt32(read[2].ToString()),
+                        IdSubCategoria = Convert.ToInt32(read[3].ToString()),
+                        IdCategoria = Convert.ToInt32(read[4].ToString()),
+                        AliasComprador = read[5].ToString(),
+                        AliasVendedor = read[6].ToString(),
+                        NombreCategoria = read[7].ToString(),
+                        NombreSubCategoria = read[8].ToString(),
+                        Descripcion = read[9].ToString(),
+                        FormaEntrega = read[10].ToString(),
+                        PrecioInicial = Convert.ToDecimal(read[11].ToString()),
+                        FechaInicio = Convert.ToDateTime(read[12].ToString()),
+                        FechaFinal = Convert.ToDateTime(read[13].ToString()),
+                        PrecioMinimo = Convert.ToDecimal(read[14].ToString()),
+                        PrecioFinal = Convert.ToDecimal(read[15].ToString()),
+                        IdUsuarioActual = Id,
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
+        }
 
         public List<Subastas> buscarTodasSubastas()
         {
@@ -347,6 +395,43 @@ namespace model.dao
                         NombreComprador = read[0].ToString(),
                         NombreVendedor = read[1].ToString(),
                         ComentarioAVendedor = read[2].ToString(),
+                        Evaluacion = Convert.ToInt32(read[3].ToString()),
+
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
+        }
+        public List<Subastas> infoComprador(int idUsuario)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarinfocomprador", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                comando.Parameters.AddWithValue("pcedula", idUsuario);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        NombreComprador = read[0].ToString(),
+                        NombreVendedor = read[1].ToString(),
+                        ComentarioAComprador = read[2].ToString(),
                         Evaluacion = Convert.ToInt32(read[3].ToString()),
 
                     };

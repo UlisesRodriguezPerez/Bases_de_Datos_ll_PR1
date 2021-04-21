@@ -1,20 +1,21 @@
 ﻿@model List<model.entity.Subastas>
 @{
-    ViewBag.Title = "Inicio";
+    ViewBag.Title = "Vencidas";
 }
 
 
 <div class="container">
-   @* <td><a class="btn btn-success" href="~/Subasta/Create">Crear Subasta</a></td>*@
+
     <table class="table ">
         <tr class="btn-primary">
+            <th>UACTUAL</th>
             <th>idsubasta</th>
             <th>idvendedor</th>
             <th>idcomprador</th>
             <th>idsubcategoria</th>
             <th>idcategoria</th>
-            <th>nombrecomprador</th>
-            <th>nombrevendedor</th>
+            <th>Alias Comprador</th>
+            <th>Alias Vendedor</th>
             <th>nombrecategoria</th>
             <th>nombresubcategoria</th>
             <th>descripcion</th>
@@ -22,17 +23,19 @@
             <th>precioinicial</th>
             <th>fechainicio</th>
             <th>fechafinal</th>
+            <th>precioFinal</th>
         </tr>
         @foreach (var objetoSubasta in Model)
         {
     <tr>
+        <td>@objetoSubasta.IdUsuarioActual</td>
         <td>@objetoSubasta.IdSubasta</td>
         <td>@objetoSubasta.IdVendedor</td>
         <td>@objetoSubasta.IdComprador</td>
         <td>@objetoSubasta.IdSubCategoria</td>
         <td>@objetoSubasta.IdCategoria</td>
-        <td>@objetoSubasta.NombreComprador</td>
-        <td>@objetoSubasta.NombreVendedor</td>
+        <td>@objetoSubasta.AliasComprador</td>
+        <td>@objetoSubasta.AliasVendedor</td>
         <td>@objetoSubasta.NombreCategoria</td>
         <td>@objetoSubasta.NombreSubCategoria</td>
         <td>@objetoSubasta.Descripcion</td>
@@ -40,13 +43,35 @@
         <td>@objetoSubasta.PrecioInicial</td>
         <td>@objetoSubasta.FechaInicio</td>
         <td>@objetoSubasta.FechaFinal</td>
+        <td>@objetoSubasta.PrecioFinal</td>
+
+
+
 
         <!--  PENDEINTE EL VER  -->
-        <td><a class="btn btn-success" href="~/Subasta/findInfoComprador/@objetoSubasta.IdComprador">Ver Info Comprador</a></td>
         <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
+        <td><a class="btn btn-success" href="~/Subasta/findInfoComprador/@objetoSubasta.IdComprador">Ver Info Comprador</a></td>
+        @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
+        <td>
 
+            @using (Html.BeginForm("Pujar", "Puja"))
+            {
+                <label>Incremento</label>
+                <input type="number" name="incremento" value="@objetoSubasta.PrecioMinimo" min="@objetoSubasta.PrecioMinimo" />
+
+
+                <input type="number" name="idSubasta" value="@objetoSubasta.IdSubasta" /> @*style="display: none" />*@
+
+
+                <input type="number" name="idUsuario" value="@objetoSubasta.IdUsuarioActual" style="display: none" />
+
+                <button type="submit">Pujar</button>
+            }
+
+        </td>
     </tr>
         }
     </table>
+
 </div>
 

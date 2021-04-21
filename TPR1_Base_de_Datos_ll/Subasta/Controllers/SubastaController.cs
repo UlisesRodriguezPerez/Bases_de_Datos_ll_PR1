@@ -26,6 +26,19 @@ namespace Subasta.Controllers
             //objetoSubasta.Name = name;
             return View(lista);
         }
+
+        [HttpPost]
+        public ActionResult Vencidas()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Vencidas(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.buscarSubastasVencidas(Id);
+            //objetoSubasta.Name = name;
+            return View(lista);
+        }
         public ActionResult Todas()
         {
             List<Subastas> lista = objetoSubasta.buscarTodasSubastas();
@@ -115,6 +128,13 @@ namespace Subasta.Controllers
             List<Subastas> lista = objetoSubasta.infoVendedor(Id);
             return View(lista);
         }
+        [HttpGet]
+        public ActionResult findInfoComprador(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.infoComprador(Id);
+            return View(lista);
+        }
+        
         [HttpGet]
         public ActionResult VariableSistemas()
         {
