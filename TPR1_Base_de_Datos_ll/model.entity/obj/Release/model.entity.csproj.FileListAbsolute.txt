@@ -1,0 +1,6 @@
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\bin\Release\model.entity.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\bin\Release\model.entity.pdb
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\obj\Release\model.entity.csprojAssemblyReference.cache
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\obj\Release\model.entity.csproj.CoreCompileInputs.cache
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\obj\Release\model.entity.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\model.entity\obj\Release\model.entity.pdb

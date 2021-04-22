@@ -26,6 +26,18 @@ namespace Subasta.Controllers
             //objetoSubasta.Name = name;
             return View(lista);
         }
+        [HttpPost]
+        public ActionResult historialPujas()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult historialPujas(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.buscarhistorialPujas(Id);
+            //objetoSubasta.Name = name;
+            return View(lista);
+        }
 
         [HttpPost]
         public ActionResult Vencidas()
@@ -71,7 +83,7 @@ namespace Subasta.Controllers
             subasta.IdSubasta = Id;
             
             objetoSubasta.crearComentarioAVendedor(subasta);
-            return RedirectToAction("Inicio/"+Id);
+            return RedirectToAction("../Menu/Inicio");
         }
 
 
@@ -85,12 +97,13 @@ namespace Subasta.Controllers
         }
 
         [HttpPost]
-        public ActionResult comentarioAComprador(Subastas subasta, int Id)
+       // [HttpGet]
+        public ActionResult comentarioACompradorr(int IdSubasta, string comentario, int evaluacion, int idUsuario)//Subastas subasta, int Id)
         {
-            subasta.IdSubasta = Id;
+            //subasta.IdSubasta = Id;
 
-            objetoSubasta.crearComentarioAComprador(subasta);
-            return RedirectToAction("Inicio");
+            objetoSubasta.crearComentarioAComprador(IdSubasta, comentario,evaluacion);
+            return RedirectToAction("../Menu/Inicio");
         }
         [HttpGet]
         public ActionResult SubastarItem(int Id)

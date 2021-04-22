@@ -13,7 +13,7 @@ BEGIN
 idsubasta = (SELECT "IdSubasta" FROM "Pujas" ORDER BY "IdPuja" DESC limit 1);
 cantidadPujas = (SELECT COUNT(*) FROM "Pujas" WHERE "IdSubasta" = idsubasta);
 
-idpujavieja = (SELECT "IdPuja" FROM "Pujas" WHERE "IdSubasta" = idsubasta limit 1);
+idpujavieja = (SELECT "IdPuja" FROM "Pujas" WHERE "IdSubasta" = idsubasta AND "PujaMasAlta" = true ORDER BY "IdPuja" ASC limit 1);
 --incremento = (SELECT Su."PrecioInicial" FROM "Subasta" Su WHERE Su."IdSubasta" = idsubasta);
 
 UPDATE 

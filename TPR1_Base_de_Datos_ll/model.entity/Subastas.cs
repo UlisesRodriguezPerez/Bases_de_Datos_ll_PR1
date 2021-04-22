@@ -36,6 +36,7 @@ namespace model.entity
 
         private int porcentajeMejora;
         private decimal precioMinimo;
+        private string nombreUsuarioActual;
 
 
         public Subastas() { }
@@ -51,8 +52,8 @@ namespace model.entity
                         string descripcion, string formaEntrega, decimal precioInicial,
                         DateTime fechaInicio, DateTime fechaFinal, string nombreVendedor, string nombreComprador,
                         string nombreSubCategoria, string nombreCategoria, int idCategoria, string comentarioAVendedor, string comentarioAComprador, int evaluacion,
-                        string aliasComprador, string aliasVendedor, int idUsuarioActual, decimal incremento, decimal precioFinal, DateTime fechaSubida, int porcentajeMejora, 
-                        decimal precioMinimo)
+                        string aliasComprador, string aliasVendedor, int idUsuarioActual, decimal incremento, decimal precioFinal, DateTime fechaSubida, int porcentajeMejora,
+                        decimal precioMinimo, string nombreUsuarioActual)
         {
             this.idSubasta = idSubasta;
             this.idVendedor = idVendedor;
@@ -79,6 +80,7 @@ namespace model.entity
             this.fechaSubida = fechaSubida;
             this.porcentajeMejora = porcentajeMejora;
             this.precioMinimo = precioMinimo;
+            this.nombreUsuarioActual = nombreUsuarioActual;
         }
 
         public int IdSubasta { get => idSubasta; set => idSubasta = value; }
@@ -106,5 +108,6 @@ namespace model.entity
         public DateTime FechaSubida { get => fechaSubida; set => fechaSubida = value; }
         public int PorcentajeMejora { get => porcentajeMejora; set => porcentajeMejora = value; }
         public decimal PrecioMinimo { get => precioMinimo; set => precioMinimo = value; }
+        public string NombreUsuarioActual { get => nombreUsuarioActual; set => nombreUsuarioActual = value; }
     }
 }

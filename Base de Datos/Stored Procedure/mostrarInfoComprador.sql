@@ -1,3 +1,6 @@
+-- FUNCTION: public.mostrarinfocomprador(integer)
+
+-- DROP FUNCTION public.mostrarinfocomprador(integer);
 
 CREATE OR REPLACE FUNCTION public.mostrarinfocomprador(
 	pcedula integer)
@@ -20,7 +23,8 @@ INNER JOIN "Usuarios"  UC ON UC."Cedula" = S."IdComprador"
 INNER JOIN "ComentariosAClientes" cmtC ON cmtC."idSubasta" = S."IdSubasta"
 
 WHERE
-	UV."Cedula" = pcedula
+	UC."Cedula" = pcedula
 $BODY$;
 
-
+ALTER FUNCTION public.mostrarinfocomprador(integer)
+    OWNER TO postgres;

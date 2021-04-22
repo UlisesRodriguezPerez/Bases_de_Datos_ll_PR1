@@ -23,7 +23,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-kabel col-md-2" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.Evaluacion, new { htmlAttrbutes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Evaluacion,  new { htmlAttrbutes = new { @class = "form-control", min = "1" } })
         </div>
     </div>
 

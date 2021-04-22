@@ -39,6 +39,7 @@ namespace model.dao
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+                comando.Parameters.AddWithValue("idusuario", Id);
                 objConexion.getConexion().Open();
                 NpgsqlDataReader read = comando.ExecuteReader();
                 while (read.Read())
@@ -61,7 +62,46 @@ namespace model.dao
                         FechaFinal = Convert.ToDateTime(read[13].ToString()),
                         PrecioMinimo = Convert.ToDecimal(read[14].ToString()),
                         PrecioFinal = Convert.ToDecimal(read[15].ToString()),
+                        //NombreUsuarioActual = read[16].ToString(),
                         IdUsuarioActual = Id,
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
+        }
+        public List<Subastas> buscarhistorialPujas(int Id)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarhistorialpujas", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                comando.Parameters.AddWithValue("idsubasta", Id);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        NombreComprador = read[0].ToString(),
+                        AliasComprador = read[1].ToString(),
+                        Incremento = Convert.ToDecimal(read[2].ToString()),
+                        PrecioFinal = Convert.ToDecimal(read[3].ToString()),
+                        FechaSubida = Convert.ToDateTime(read[4].ToString()),
+
                     };
                     listaSubastas.Add(objetoSubasta);
                 }
@@ -202,6 +242,7 @@ namespace model.dao
                         PrecioInicial = Convert.ToDecimal(read[11].ToString()),
                         FechaInicio = Convert.ToDateTime(read[12].ToString()),
                         FechaFinal = Convert.ToDateTime(read[13].ToString()),
+                        IdUsuarioActual = idUsuario,
                     };
                     listaSubastas.Add(objetoSubasta);
                 }
@@ -292,7 +333,7 @@ namespace model.dao
 
 
         }
-        public void crearComentarioAComprador(Subastas subasta)
+        public void crearComentarioAComprador(int idSubasta, string comentario, int evaluacion)
         {
             try
             {
@@ -300,9 +341,9 @@ namespace model.dao
                 comando = new NpgsqlCommand("insertarComentarioAComprador", objConexion.getConexion());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idsubasta", subasta.IdSubasta);
-                comando.Parameters.AddWithValue("comentario", subasta.ComentarioAVendedor);
-                comando.Parameters.AddWithValue("evaluacion", subasta.Evaluacion);
+                comando.Parameters.AddWithValue("idsubasta", idSubasta);
+                comando.Parameters.AddWithValue("comentario", comentario);
+                comando.Parameters.AddWithValue("evaluacion", evaluacion);
 
                 objConexion.getConexion().Open();
                 comando.ExecuteNonQuery();

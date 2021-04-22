@@ -141,10 +141,10 @@ namespace model.dao
         {
             try
             {
-
+                //string encryptPass = Encrypt.GetSHA256(objetoUsuario.Password);
             comando = new NpgsqlCommand("insertarusuario", objConexion.getConexion());
             comando.CommandType = CommandType.StoredProcedure;
-
+     
             comando.Parameters.AddWithValue("pcedula", objetoUsuario.IdUsuario);
             comando.Parameters.AddWithValue("pnombre", objetoUsuario.NombreUsuario);
             comando.Parameters.AddWithValue("pprimerapellido", objetoUsuario.PrimerApellido);
