@@ -27,6 +27,29 @@ namespace Subasta.Controllers
             return View(lista);
         }
         [HttpPost]
+        public ActionResult Categorias()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Categorias(int Id)
+        {
+            List<Subastas> lista = objetoSubasta.buscarCategorias(Id);
+            return View(lista);
+        }
+        //[HttpPost]
+        //public ActionResult SubCategoria()
+        //{
+        //    return View();
+        //}
+        //// [HttpGet]
+        //public ActionResult SubCategoria(int idusuario, int idcategoria, int id)
+        //{
+        //    List<Subastas> lista = objetoSubasta.buscarSubCategorias(idusuario,idcategoria);
+
+        //    return View(lista);
+        //}
+        [HttpPost]
         public ActionResult historialPujas()
         {
             return View();

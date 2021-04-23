@@ -5,19 +5,7 @@
 
 
 <div class="container">
-    <div>
 
-        @using (Html.BeginForm("filtar", "Subasta"))
-        {
-            <label>Categoria</label>
-            <input type="text" name="categoria" value="" />
-
-            <label>Sub-Categoría</label>
-            <input type="text" name="subcategoria" value="" /> @*style="display: none" />*@
-
-            <button type="submit">Filtar</button>
-        }
-    </div>
 
     <table class="table ">
         <tr class="btn-primary">
@@ -82,21 +70,9 @@
                 <button type="submit">Pujar</button>
             }
 
-            @*<form action="~/Puja/Pujar" method="post">*@
-
-
-            <!--<input name="Subasta" id="subasta" type="number" value="objetoSubasta.IdSubasta" required disabled="disabled" />
-        <input name="Usuario" id="usuario" type="number" value="objetoSubasta.IdUsuarioActual" required disabled="disabled" />-->
-            @*required style="display: none">*@
-            <!--<label for="say">Ingrese el valor de la puja.</label>
-        <input-->
-            <!--name="Incremento" id="incremento" type="number" min="objetoSubasta.PrecioMinimo" value="objetoSubasta.PrecioMinimo" required />-->
-            @* <button type="submit"> Buscar Puja</button>*@
-
-
-            @*<input type="submit" value="Pujar">*@
-            @*</form>*@
         </td>
+
+
     </tr>
         }
     </table>

@@ -300,6 +300,8 @@
     <Content Include="Views\Subasta\Vencidas.cshtml" />
     <Content Include="Views\Subasta\findInfoComprador.cshtml" />
     <Content Include="Views\Subasta\historialPujas.cshtml" />
+    <Content Include="Views\Subasta\Categorias.cshtml" />
+    <Content Include="Views\Subasta\SubCategoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

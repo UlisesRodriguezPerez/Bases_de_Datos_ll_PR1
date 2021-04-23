@@ -12,4 +12,16 @@
     <a class="btn btn-success" href="~/Subasta/Subastadas/@Model.IdUsuario">Ver Subastas Vendidas </a>
     <a class="btn btn-success" href="~/Subasta/Compradas/@Model.IdUsuario">Ver Subastas Compradas </a>
     <a class="btn btn-success" href="~/Subasta/SubastarItem/@Model.IdUsuario">Subastar Item</a>
+
+    <div>
+
+        @using (Html.BeginForm("categorias", "Subasta"))
+        {
+            <input type="number" name="idUsuario" value="@Model.IdUsuario" style="display: none" />
+
+            <button type="submit">Buscar Categorias (NO USAR)</button>
+        }
+    </div>
+    <a class="btn btn-success" href="~/Subasta/Categorias/@Model.IdUsuario">Buscar Categorias</a>
+
 </menu>
