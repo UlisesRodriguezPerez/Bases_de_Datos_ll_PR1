@@ -80,7 +80,91 @@ namespace model.dao
             }
             return listaSubastas;
         }
-        
+        public List<Subastas> buscarSubastasActivasSubCategorias(int idUsuario, int idSubCategoria)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarsubastasactivassubcategorias", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                comando.Parameters.AddWithValue("idsubcategoria", idSubCategoria);
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        IdSubasta = Convert.ToInt32(read[0].ToString()),
+                        IdVendedor = Convert.ToInt32(read[1].ToString()),
+                        IdComprador = Convert.ToInt32(read[2].ToString()),
+                        IdSubCategoria = Convert.ToInt32(read[3].ToString()),
+                        IdCategoria = Convert.ToInt32(read[4].ToString()),
+                        AliasComprador = read[5].ToString(),
+                        AliasVendedor = read[6].ToString(),
+                        NombreCategoria = read[7].ToString(),
+                        NombreSubCategoria = read[8].ToString(),
+                        Descripcion = read[9].ToString(),
+                        FormaEntrega = read[10].ToString(),
+                        PrecioInicial = Convert.ToDecimal(read[11].ToString()),
+                        FechaInicio = Convert.ToDateTime(read[12].ToString()),
+                        FechaFinal = Convert.ToDateTime(read[13].ToString()),
+                        PrecioMinimo = Convert.ToDecimal(read[14].ToString()),
+                        PrecioFinal = Convert.ToDecimal(read[15].ToString()),
+                        //NombreUsuarioActual = read[16].ToString(),
+                        IdUsuarioActual = idUsuario,
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
+        }
+        public List<Subastas> buscarCategoriass(int Id)
+        {
+            List<Subastas> listaSubastas = new List<Subastas>();
+            try
+            {
+                comando = new NpgsqlCommand("mostrarcategorias", objConexion.getConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                objConexion.getConexion().Open();
+                NpgsqlDataReader read = comando.ExecuteReader();
+                while (read.Read())
+                {
+                    Subastas objetoSubasta = new Subastas
+                    {
+                        IdCategoria = Convert.ToInt32(read[0].ToString()),
+                        NombreCategoria = read[1].ToString(),
+                        IdUsuarioActual = Id,
+                    };
+                    listaSubastas.Add(objetoSubasta);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                objConexion.getConexion().Close();
+                objConexion.cerrarConexion();
+            }
+            return listaSubastas;
+        }
+
         public List<Subastas> buscarSubCategorias(int idUsuario, int idCategoria)
         {
             List<Subastas> listaSubastas = new List<Subastas>();
@@ -156,41 +240,7 @@ namespace model.dao
             }
             return listaSubastas;
         }
-        public List<Subastas> buscarCategorias(int Id)
-        {
-            List<Subastas> listaSubastas = new List<Subastas>();
-            try
-            {
-                comando = new NpgsqlCommand("mostrarcategorias", objConexion.getConexion())
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
-                while (read.Read())
-                {
-                    Subastas objetoSubasta = new Subastas
-                    {
-                        IdCategoria = Convert.ToInt32(read[0].ToString()),
-                        NombreCategoria = read[1].ToString(),
-                        IdUsuarioActual = Id,
-                    };
-                    listaSubastas.Add(objetoSubasta);
-                }
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
-            }
-            return listaSubastas;
-        }
+        
         public List<Subastas> buscarSubastasVencidas(int Id)
         {
             List<Subastas> listaSubastas = new List<Subastas>();

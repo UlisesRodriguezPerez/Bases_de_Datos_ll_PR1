@@ -1,29 +1,26 @@
---SELECT pujar(21,3,550)
---DELETE FROM "Pujas" WHERE "IdPuja" = 82
---SELECT pujar(19,3,29000)
+-- FUNCTION: public.pujar(integer, integer, numeric)
+
+-- DROP FUNCTION public.pujar(integer, integer, numeric);
+
 CREATE OR REPLACE FUNCTION public.pujar(
 	idsubasta integer,
 	idusuariopujador integer,
-	incremento real
-	)
-
+	incremento numeric)
     RETURNS void
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
-AS --$body$
---DO
-$$
+AS $BODY$
 --DECLARE
  --   local_a text := a;
    -- local_b text := b;
-DECLARE nuevoIncrementoMinimo real;-- idsubasta integer;
-		incrementoPorcentaje real;
-		incrementoMinimo real;
+DECLARE nuevoIncrementoMinimo numeric;-- idsubasta integer;
+		incrementoPorcentaje numeric;
+		incrementoMinimo numeric;
 		id_usuario integer := idusuariopujador;
 		id_subasta integer := idsubasta;
-		_incremento real := incremento;
-		nuevoIncremento real;
+		_incremento numeric := incremento;
+		nuevoIncremento numeric;
 BEGIN
 
 nuevoIncrementoMinimo = ((SELECT "PrecioFinal" FROM "Pujas"  ORDER BY "IdPuja" DESC limit 1) + _incremento);
@@ -50,9 +47,11 @@ INSERT INTO "Pujas"(
 		--(SELECT MAX((SELECT "incrementoMinimo" FROM "VariablesSistema"),cast( (((SELECT "PrecioFinal" FROM "Pujas"  ORDER BY "IdPuja" DESC limit 1) + incremento)* (Select "porcentajeMejora" FROM "VariablesSistema" )/100)AS REAL))),
 		nuevoIncremento,
 		(_incremento + (SELECT "PrecioFinal" FROM "Pujas" WHERE "IdSubasta" = id_subasta ORDER BY "IdPuja" DESC limit 1)),
-		current_date,
+		current_timestamp,
 		true
 	);
 END;
-$$
---$BODY$;
+$BODY$;
+
+ALTER FUNCTION public.pujar(integer, integer, numeric)
+    OWNER TO postgres;

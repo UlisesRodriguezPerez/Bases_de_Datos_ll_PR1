@@ -8,6 +8,7 @@ namespace Subasta.Controllers
     public class SubastaController : Controller
     {
         private SubastaDao objetoSubasta;
+        private PujaDao objetoPuja;
 
         public SubastaController()
         {
@@ -26,6 +27,7 @@ namespace Subasta.Controllers
             //objetoSubasta.Name = name;
             return View(lista);
         }
+
         [HttpPost]
         public ActionResult Categorias()
         {
@@ -34,7 +36,7 @@ namespace Subasta.Controllers
         [HttpGet]
         public ActionResult Categorias(int Id)
         {
-            List<Subastas> lista = objetoSubasta.buscarCategorias(Id);
+            List<Subastas> lista = objetoSubasta.buscarCategoriass(Id);
             return View(lista);
         }
         //[HttpPost]
@@ -42,13 +44,30 @@ namespace Subasta.Controllers
         //{
         //    return View();
         //}
-        //// [HttpGet]
-        //public ActionResult SubCategoria(int idusuario, int idcategoria, int id)
-        //{
-        //    List<Subastas> lista = objetoSubasta.buscarSubCategorias(idusuario,idcategoria);
+        [HttpPost]
+        public ActionResult SubCategorias(int idusuario, int idcategoria)
+        {
+            List<Subastas> lista = objetoSubasta.buscarSubCategorias(idusuario, idcategoria);
 
-        //    return View(lista);
-        //}
+            return View(lista);
+        }
+        [HttpGet]
+        public ActionResult SubCategorias()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult filtarSubastasSubCategoria(int idusuario, int idSubCategoria)
+        {
+            List<Subastas> lista = objetoSubasta.buscarSubastasActivasSubCategorias(idusuario, idSubCategoria);
+
+            return View(lista);
+        }
+        [HttpGet]
+        public ActionResult filtarSubastasSubCategoria()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult historialPujas()
         {

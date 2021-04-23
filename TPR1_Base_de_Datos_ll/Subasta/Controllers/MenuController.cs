@@ -34,16 +34,22 @@ namespace Subasta.Controllers
         {
             try
             {
-                string pass = Encrypt.GetSHA256(usuario.Password);
-                usuario.Password = pass;
+                //Conexion.alias = Convert.ToString(usuario.IdUsuario);
+                //Conexion.pass = usuario.Password;
+                //string pass = Encrypt.GetSHA256(usuario.Password);
+                //usuario.Password = pass;
                 string tipo = objetoUsuario.verificar(usuario);
                 //System.Diagnostics.Debug.WriteLine(tipo);
-                if (tipo == "Admin")
-                {
+                if (tipo == "Admin"){ 
+                    Conexion.alias = "admin1";//Convert.ToString(usuario.IdUsuario);
+                    Conexion.pass = "admin1pw";
+                
                     return RedirectToAction("/MenuAdmin/" + usuario.IdUsuario);
                 }
                 else if (tipo == "Normal")
                 {
+                    Conexion.alias = "normal";//Convert.ToString(usuario.IdUsuario);
+                    Conexion.pass = "normal";
                     //user = new Usuario();
                     return RedirectToAction("/MenuNormal/" + usuario.IdUsuario);
                 }

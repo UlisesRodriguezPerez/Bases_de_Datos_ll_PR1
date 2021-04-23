@@ -40,6 +40,7 @@ namespace model.dao
                     CommandType = CommandType.StoredProcedure
                 };
                 objConexion.getConexion().Open();
+
                 NpgsqlDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
@@ -80,15 +81,24 @@ namespace model.dao
         public string verificar(Usuario usuario)
         {
 
+            bool blnfound = false;
             string result;
-            try
-            {
+            objConexion.cerrarConexion();
+            objConexion.getConexion().Close();
 
-                comando = new NpgsqlCommand("validarusuario", objConexion.getConexion());
-                comando.CommandType = CommandType.StoredProcedure;
+            //try
+            //{
+            //int alias = usuario.IdUsuario;
+            //string pass = usuario.Password;
+            //    NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;Port=5432;DataBase=Bases2_Prueba;Uid="+alias+";Pwd="+pass);
 
-                comando.Parameters.AddWithValue("pcedula", usuario.IdUsuario);
+            comando = new NpgsqlCommand("validarusuario", objConexion.getConexion());
+            //comando = new NpgsqlCommand("validarusuario", conn);
+            comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("palias", usuario.Alias);
                 comando.Parameters.AddWithValue("ppassword", usuario.Password);
+                //conn.Open();
                 objConexion.getConexion().Open();
                 comando.ExecuteNonQuery();
                 NpgsqlDataReader read = comando.ExecuteReader();
@@ -121,8 +131,13 @@ namespace model.dao
                 }
                 else
                 {
-                    result = "";
+                    result = " ";
+                    //MessageBox.Show("Usuario o Contraseña Incorrecta", "Mensaje de Alerta", MessageBoxButton.OK);
+                    //read.Close();
+                    //conn.Close();
                 }
+            try
+            {
             }
             catch (Exception)
             {
@@ -130,6 +145,8 @@ namespace model.dao
             }
             finally
             {
+                //read.Close();
+                //conn.Close();
                 objConexion.getConexion().Close();
                 objConexion.cerrarConexion();
             }

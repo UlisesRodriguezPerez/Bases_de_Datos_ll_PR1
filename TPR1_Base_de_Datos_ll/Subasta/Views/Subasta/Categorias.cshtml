@@ -23,22 +23,18 @@
 
         <td>
 
-            @using (Html.BeginForm("SubCategoria", "Subasta"))
+            @using (Html.BeginForm("SubCategorias", "Subasta"))
             {
-                <label>Usuario Id</label>
-                <input type="number" name="idusuario" value="@subasta.IdUsuarioActual" />
+                <input type="number" name="idusuario" value="@subasta.IdUsuarioActual" style="display: none" />
 
 
-                <input type="number" name="idcategoria" value="@subasta.IdCategoria" /> @*style="display: none" />*@
+                <input type="number" name="idcategoria" value="@subasta.IdCategoria" style="display: none" />
 
-
-                <input type="number" name="id" value="" style="display: none" />
 
                 <button type="submit">Ver Sub-Categorías</button>
             }
 
         </td>
-        <td><a class="btn btn-success" href="~/Subasta/SubCategoria/@subasta.IdCategoria">NO USAR</a></td>
 
     </tr>
         }

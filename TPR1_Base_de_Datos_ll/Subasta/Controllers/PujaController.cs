@@ -65,7 +65,7 @@ namespace Subasta.Controllers
             objetoPuja.pujar(incremento,idSubasta,idUsuario);
         
             
-            return RedirectToAction("../Subasta/Inicio/" + idUsuario);
+            return RedirectToAction("../Menu/MenuNormal/" + idUsuario);
         }
 
     }

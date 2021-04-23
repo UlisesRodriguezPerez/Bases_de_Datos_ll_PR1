@@ -52,24 +52,7 @@
         <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
         <td><a class="btn btn-success" href="~/Subasta/findInfoComprador/@objetoSubasta.IdComprador">Ver Info Comprador</a></td>
         <td><a class="btn btn-success" href="~/Subasta/historialPujas/@objetoSubasta.IdSubasta">Historial Pujas</a></td>
-        @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
-        <td>
 
-            @using (Html.BeginForm("Pujar", "Puja"))
-            {
-                <label>Incremento</label>
-                <input type="number" name="incremento" value="@objetoSubasta.PrecioMinimo" min="@objetoSubasta.PrecioMinimo" />
-
-
-                <input type="number" name="idSubasta" value="@objetoSubasta.IdSubasta" /> @*style="display: none" />*@
-
-
-                <input type="number" name="idUsuario" value="@objetoSubasta.IdUsuarioActual" style="display: none" />
-
-                <button type="submit">Pujar</button>
-            }
-
-        </td>
     </tr>
         }
     </table>

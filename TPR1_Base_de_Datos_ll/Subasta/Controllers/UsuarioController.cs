@@ -35,8 +35,8 @@ namespace Subasta.Controllers
         [HttpPost]
         public ActionResult Create(Usuario objUsuario)
         {
-            string enc = Encrypt.GetSHA256(objUsuario.Password);
-            objUsuario.Password = enc;
+            //string enc = Encrypt.GetSHA256(objUsuario.Password);
+            //objUsuario.Password = enc;
             //string a = enc;
             objetoUsuario.create(objUsuario);
             return RedirectToAction("Inicio");

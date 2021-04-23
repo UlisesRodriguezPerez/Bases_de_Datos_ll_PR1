@@ -56,6 +56,7 @@ C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\EntityFramewor
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Microsoft.Web.Infrastructure.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.entity.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Npgsql.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\System.Buffers.dll
@@ -73,6 +74,9 @@ C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\System.Web.Raz
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\System.Web.Webpages.Deployment.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\System.Web.Webpages.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\System.Web.Webpages.Razor.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Oracle.DataAccess.dll
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.pdb
+C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll.config
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.entity.pdb
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\EntityFramework.xml
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\EntityFramework.SqlServer.xml
@@ -106,7 +110,3 @@ C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\obj\Debug\Subasta.
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\obj\Debug\Subasta.csproj.CopyComplete
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\obj\Debug\Subasta.dll
 C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\obj\Debug\Subasta.pdb
-C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll
-C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.pdb
-C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\model.dao.dll.config
-C:\Ulises\Bases_de_Datos_ll_PR1\TPR1_Base_de_Datos_ll\Subasta\bin\Oracle.DataAccess.dll

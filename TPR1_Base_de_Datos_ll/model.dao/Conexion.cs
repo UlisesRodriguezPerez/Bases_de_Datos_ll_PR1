@@ -14,11 +14,12 @@ namespace model.dao
         //patron singleton
         private static Conexion objConexion = null;
         private NpgsqlConnection conexion;
-
+        public static string alias = "admin1";
+        public static string pass = "admin1pw";
         //Constructor donde agregaremos la cadena de conexión con SqlServer.
         private Conexion()
         {
-            conexion = new NpgsqlConnection("Server=localhost;Port=5432;DataBase=Bases2_Prueba;Uid=postgres;Pwd=1234");
+            conexion = new NpgsqlConnection("Server=localhost;Port=5432;DataBase=Bases2_Prueba;Uid="+alias+";Pwd="+pass);
             //connectionString = "Server=localhost;Port=5432;DataBase=Bases2_Prueba;Uid=Bases de datos;Pwd=1234" 
         }
 

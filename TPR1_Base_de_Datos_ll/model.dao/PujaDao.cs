@@ -58,6 +58,7 @@ namespace model.dao
                 objConexion.cerrarConexion();
             }   
         }
+
         public Decimal buscarMinimoIncremento(Puja puja)
         {
             bool hayRegistros;
