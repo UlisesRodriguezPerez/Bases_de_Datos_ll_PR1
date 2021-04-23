@@ -1,0 +1,32 @@
+﻿@model List<model.entity.Subastas>
+@{
+    ViewBag.Title = "Historial Pujas";
+}
+
+
+<div class="container">
+    <table class="table ">
+        <tr class="btn-primary">
+
+            @*<th>Nombre</th>*@
+            <th>Alias</th>
+            <th>Incremento</th>
+            <th>Precio Final</th>
+            <th>Fecha Subida</th>
+
+            <th colspan="5">Operaciones</th>
+
+        </tr>
+        @foreach (var subasta in Model)
+        {
+            <tr>
+                @*<td>@subasta.NombreComprador</td>*@
+                <td>@subasta.AliasComprador</td>
+                <td>@subasta.Incremento</td>
+                <td>@subasta.PrecioFinal</td>
+                <td>@subasta.FechaSubida</td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -1,0 +1,18 @@
+﻿@model model.entity.Usuario
+@{
+    ViewBag.Title = "Menu Normal";
+}
+
+<h2>Menu Normal </h2>
+
+
+<menu>
+    <a class="btn btn-success" href="~/Subasta/Vencidas/@Model.IdUsuario">Ver Subastas vencidas</a>
+    <a class="btn btn-success" href="~/Subasta/Inicio/@Model.IdUsuario">Ver Subastas Activas</a>
+    <a class="btn btn-success" href="~/Subasta/Subastadas/@Model.IdUsuario">Ver Subastas Vendidas </a>
+    <a class="btn btn-success" href="~/Subasta/Compradas/@Model.IdUsuario">Ver Subastas Compradas </a>
+    <a class="btn btn-success" href="~/Subasta/SubastarItem/@Model.IdUsuario">Subastar Item</a>
+
+    <a class="btn btn-success" href="~/Subasta/Categorias/@Model.IdUsuario">Buscar Categorias</a>
+
+</menu>

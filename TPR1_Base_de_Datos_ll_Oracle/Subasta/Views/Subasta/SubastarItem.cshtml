@@ -1,0 +1,59 @@
+﻿@model model.entity.Subastas
+
+@{
+    ViewBag.Title = "Subastar";
+}
+
+<h1>Vista de registro de Usuarios</h1>
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+    <div class="form-group" style="display: none" >
+        @Html.LabelFor(model => model.IdUsuarioActual, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.IdUsuarioActual, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NombreSubCategoria, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.NombreSubCategoria, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FormaEntrega, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FormaEntrega, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PrecioInicial, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PrecioInicial, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FechaInicio, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-kabel col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FechaFinal, new { htmlAttrbutes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-actions col-md-offset-2">
+        <input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar" />
+    </div>
+</div>
+}

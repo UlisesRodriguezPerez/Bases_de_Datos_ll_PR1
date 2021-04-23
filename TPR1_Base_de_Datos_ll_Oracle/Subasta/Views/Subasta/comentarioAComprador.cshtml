@@ -1,0 +1,53 @@
+﻿@model model.entity.Subastas
+@{
+    ViewBag.Title = "Crear Comenario a Comprador";
+}
+
+<h1>Crear Comenario a Comprador</h1>
+@using (Html.BeginForm("comentarioACompradorr", "Subasta"))
+{
+    <label>subasta</label>
+    <input type="number" name="idSubasta" value="@Model.IdSubasta"  />
+    @*<input type="number" name="idUsuario" value="@Model.IdUsuarioActual" />*@
+
+
+    <input type="text" name="comentario" value="@Model.ComentarioAComprador" />
+    @*style="display: none" />*@
+
+
+    <input type="number" name="evaluacion" value="@Model.Evaluacion" min="1" max="5"/>
+    @*style="display: none" />*@
+
+    <button type="submit">Guardar</button>
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdSubasta, htmlAttributes: new { @class = "control-kabel col-md-2" })
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.IdSubasta, new { htmlAttrbutes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComentarioAComprador, htmlAttributes: new { @class = "control-kabel col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ComentarioAComprador, new { htmlAttrbutes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-kabel col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Evaluacion, new { htmlAttrbutes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-actions col-md-offset-2">
+            <input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar" />
+            @*<a class="btn btn-primary" href="~/Usuario">Regresar</a>*@
+        </div>
+    </div>
+}

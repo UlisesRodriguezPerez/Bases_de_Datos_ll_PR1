@@ -1,0 +1,97 @@
+﻿@model List<model.entity.Subastas>
+@{
+    ViewBag.Title = "Inicio";
+}
+
+
+<div class="container">
+
+
+    <table class="table ">
+        <tr class="btn-primary">
+            <th>UACTUAL</th>
+            <th>idsubasta</th>
+            <th>idvendedor</th>
+            <th>idcomprador</th>
+            <th>idsubcategoria</th>
+            <th>idcategoria</th>
+            <th>Alias Comprador</th>
+            <th>Alias Vendedor</th>
+            <th>nombrecategoria</th>
+            <th>nombresubcategoria</th>
+            <th>descripcion</th>
+            <th>formaentrega</th>
+            <th>precioinicial</th>
+            <th>fechainicio</th>
+            <th>fechafinal</th>
+            <th>precioFinal</th>
+        </tr>
+        @foreach (var objetoSubasta in Model)
+        {
+    <tr>
+        <td>@objetoSubasta.IdUsuarioActual</td>
+        <td>@objetoSubasta.IdSubasta</td>
+        <td>@objetoSubasta.IdVendedor</td>
+        <td>@objetoSubasta.IdComprador</td>
+        <td>@objetoSubasta.IdSubCategoria</td>
+        <td>@objetoSubasta.IdCategoria</td>
+        <td>@objetoSubasta.AliasComprador</td>
+        <td>@objetoSubasta.AliasVendedor</td>
+        <td>@objetoSubasta.NombreCategoria</td>
+        <td>@objetoSubasta.NombreSubCategoria</td>
+        <td>@objetoSubasta.Descripcion</td>
+        <td>@objetoSubasta.FormaEntrega</td>
+        <td>@objetoSubasta.PrecioInicial</td>
+        <td>@objetoSubasta.FechaInicio</td>
+        <td>@objetoSubasta.FechaFinal</td>
+        <td>@objetoSubasta.PrecioFinal</td>
+
+
+
+
+        <!--  PENDEINTE EL VER  -->
+        <td><a class="btn btn-success" href="~/Subasta/findInfoVendedor/@objetoSubasta.IdVendedor">Ver Info Vendedor</a></td>
+        <td><a class="btn btn-success" href="~/Subasta/historialPujas/@objetoSubasta.IdSubasta">Historial Pujas</a></td>
+
+        @*<td><a class="btn btn-primary" href="~/Subasta/Pujar/@objetoSubasta.IdSubasta">Pujar</a></td>*@
+        <td>
+
+            @using (Html.BeginForm("Pujar", "Puja"))
+            {
+                <label>Incremento</label>
+                <input type="number" name="incremento" value="@objetoSubasta.PrecioMinimo" min="@objetoSubasta.PrecioMinimo" />
+
+
+                <input type="number" name="idSubasta" value="@objetoSubasta.IdSubasta" style="display: none" />
+
+
+                <input type="number" name="idUsuario" value="@objetoSubasta.IdUsuarioActual" style="display: none" />
+
+                <button type="submit">Pujar</button>
+            }
+
+        </td>
+
+
+    </tr>
+        }
+    </table>
+    @*<script>
+
+                function guardar() {
+                    var cantidad = @Model.Count();
+                    //var indice = (@Model.Sum(j => j.)) / cantidad;
+                    var x = @Model.Sum(i => i.Porcentaje);
+                    if (x == "100" && cantidad < 4) {
+                        toastr.success(" verificados con éxito", "Guardado con éxito");
+
+                        //document.write("<a class='btn btn - primary' href='/Menu/MenuNormal'>Volver al menu de cuentas.</a>");
+                    }
+                    else {
+                        toastr.warning("No cumple con el 100% en la distribución de porcentajes.", "Advertencia");
+                    }
+            }
+
+        </script>*@
+</div>
+

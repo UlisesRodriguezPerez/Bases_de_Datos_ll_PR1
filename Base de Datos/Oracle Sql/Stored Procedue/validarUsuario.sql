@@ -1,5 +1,5 @@
 CREATE OR REPLACE PROCEDURE validarusuario(
-pcedula IN number,
+palias IN VARCHAR2,
 ppassword IN VARCHAR2,
 P_CURSOR OUT SYS_REFCURSOR
 )
@@ -23,5 +23,5 @@ BEGIN
         FROM 
             "Usuarios"
         WHERE
-            pcedula = "Cedula" AND ppassword = "Password";
+            palias = "Alias" AND ppassword = "Password";
 END;

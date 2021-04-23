@@ -1,0 +1,43 @@
+﻿@model List<model.entity.Subastas>
+@{
+    ViewBag.Title = "Categorías";
+}
+
+
+<div class="container">
+    <table class="table ">
+        <tr class="btn-primary">
+            <th>Id Usuario Actual</th>
+            <th>Id</th>
+            <th>Nombre</th>
+
+
+
+        </tr>
+        @foreach (var subasta in Model)
+        {
+    <tr>
+        <td>@subasta.IdUsuarioActual</td>
+        <td>@subasta.IdCategoria</td>
+        <td>@subasta.NombreCategoria</td>
+
+        <td>
+
+            @using (Html.BeginForm("SubCategorias", "Subasta"))
+            {
+                <input type="number" name="idusuario" value="@subasta.IdUsuarioActual" style="display: none" />
+
+
+                <input type="number" name="idcategoria" value="@subasta.IdCategoria" style="display: none" />
+
+
+                <button type="submit">Ver Sub-Categorías</button>
+            }
+
+        </td>
+
+    </tr>
+        }
+    </table>
+</div>
+
