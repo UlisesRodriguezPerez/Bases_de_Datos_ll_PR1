@@ -158,7 +158,7 @@ namespace model.dao
         {
             try
             {
-                //string encryptPass = Encrypt.GetSHA256(objetoUsuario.Password);
+                string encryptPass = Encrypt.GetSHA256(objetoUsuario.Password);
             comando = new NpgsqlCommand("insertarusuario", objConexion.getConexion());
             comando.CommandType = CommandType.StoredProcedure;
      
@@ -168,7 +168,7 @@ namespace model.dao
             comando.Parameters.AddWithValue("psegundoapellido", objetoUsuario.SegundoApellido);
             comando.Parameters.AddWithValue("palias", objetoUsuario.Alias);
             comando.Parameters.AddWithValue("pcorreo", objetoUsuario.Correo);
-            comando.Parameters.AddWithValue("ppassword", objetoUsuario.Password);
+            comando.Parameters.AddWithValue("ppassword", encryptPass);//objetoUsuario.Password);
             comando.Parameters.AddWithValue("ptipousuario", objetoUsuario.EsAdmin);
             comando.Parameters.AddWithValue("ptelefonocelular", objetoUsuario.TelefonoCelular);
             comando.Parameters.AddWithValue("ptelefonocasa", objetoUsuario.TelefonoCasa);
@@ -234,8 +234,8 @@ namespace model.dao
         {
             //try
             //{
-                
-                comando = new NpgsqlCommand("editarusuario", objConexion.getConexion());
+            string encryptPass = Encrypt.GetSHA256(objetoUsuario.Password);
+            comando = new NpgsqlCommand("editarusuario", objConexion.getConexion());
                 comando.CommandType = CommandType.StoredProcedure;
 
                 comando.Parameters.AddWithValue("pcedula", objetoUsuario.IdUsuario);
@@ -244,7 +244,7 @@ namespace model.dao
                 comando.Parameters.AddWithValue("psegundoapellido", objetoUsuario.SegundoApellido);
                 comando.Parameters.AddWithValue("palias", objetoUsuario.Alias);
                 comando.Parameters.AddWithValue("pcorreo", objetoUsuario.Correo);
-                comando.Parameters.AddWithValue("ppassword", objetoUsuario.Password);
+            comando.Parameters.AddWithValue("ppassword", encryptPass);// objetoUsuario.Password);
                 comando.Parameters.AddWithValue("pcuantossubastados", objetoUsuario.CuantosSubastados);
                 comando.Parameters.AddWithValue("pcuantoscomprados", objetoUsuario.CuantosComprados);
                 comando.Parameters.AddWithValue("ptipousuario", objetoUsuario.EsAdmin);

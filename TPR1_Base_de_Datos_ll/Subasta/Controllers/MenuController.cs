@@ -36,8 +36,8 @@ namespace Subasta.Controllers
             {
                 //Conexion.alias = Convert.ToString(usuario.IdUsuario);
                 //Conexion.pass = usuario.Password;
-                //string pass = Encrypt.GetSHA256(usuario.Password);
-                //usuario.Password = pass;
+                string pass = Encrypt.GetSHA256(usuario.Password);
+                usuario.Password = pass;
                 string tipo = objetoUsuario.verificar(usuario);
                 //System.Diagnostics.Debug.WriteLine(tipo);
                 if (tipo == "Admin"){ 
