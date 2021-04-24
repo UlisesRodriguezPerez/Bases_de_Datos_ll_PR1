@@ -39,6 +39,7 @@ namespace model.dao
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
                 objConexionOracle.getConexionOracle().Open();
 
                 OracleDataReader read = comando.ExecuteReader();
@@ -55,7 +56,7 @@ namespace model.dao
                         Password = read[6].ToString(),
                         CuantosSubastados = Convert.ToInt32(read[7].ToString()),
                         CuantosComprados = Convert.ToInt32(read[8].ToString()),
-                        EsAdmin = Convert.ToBoolean(read[9].ToString()),
+                        EsAdmin = convertir(read[9].ToString()),
                         TelefonoCelular = read[10].ToString(),
                         TelefonoCasa = read[11].ToString(),
                         TelefonoTrabajo = read[12].ToString()
@@ -78,6 +79,17 @@ namespace model.dao
             return listaUsuarios;
         }
 
+        public Boolean convertir(string bit)
+        {
+            if (bit == "1"){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         public string verificar(Usuario usuario)
         {
 
@@ -93,8 +105,9 @@ namespace model.dao
 
                 comando.Parameters.Add("palias", usuario.Alias);
                 comando.Parameters.Add("ppassword", usuario.Password);
-                //conn.Open();
-                objConexionOracle.getConexionOracle().Open();
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+            //conn.Open();
+            objConexionOracle.getConexionOracle().Open();
                 comando.ExecuteNonQuery();
                 OracleDataReader read = comando.ExecuteReader();
                 bool hayRegistros = read.Read();
@@ -109,7 +122,7 @@ namespace model.dao
                     usuario.Password = read[6].ToString();
                     usuario.CuantosSubastados = Convert.ToInt32(read[7].ToString());
                     usuario.CuantosComprados = Convert.ToInt32(read[8].ToString());
-                    usuario.EsAdmin = Convert.ToBoolean(read[9].ToString());
+                    usuario.EsAdmin = convertir(read[9].ToString());
                     usuario.TelefonoCelular = read[10].ToString();
                     usuario.TelefonoCasa = read[11].ToString();
                     usuario.TelefonoTrabajo = read[12].ToString();
@@ -134,9 +147,9 @@ namespace model.dao
             try
             {
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                new Exception("Error al validar Usuario" + ex.Message);
             }
             finally
             {
@@ -164,10 +177,11 @@ namespace model.dao
             comando.Parameters.Add("palias", objetoUsuario.Alias);
             comando.Parameters.Add("pcorreo", objetoUsuario.Correo);
             comando.Parameters.Add("ppassword", objetoUsuario.Password);
-            comando.Parameters.Add("ptipousuario", objetoUsuario.EsAdmin);
+            comando.Parameters.Add("ptipousuario", Convert.ToInt32(objetoUsuario.EsAdmin));
             comando.Parameters.Add("ptelefonocelular", objetoUsuario.TelefonoCelular);
             comando.Parameters.Add("ptelefonocasa", objetoUsuario.TelefonoCasa);
             comando.Parameters.Add("ptelefonotrabajo", objetoUsuario.TelefonoTrabajo);
+            
 
                 objConexionOracle.getConexionOracle().Open();
             comando.ExecuteNonQuery();
@@ -193,6 +207,7 @@ namespace model.dao
                 comando = new OracleCommand("buscarusuario", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("pid", objetoUsuario.IdUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
                 objConexionOracle.getConexionOracle().Open();
                 OracleDataReader read = comando.ExecuteReader();
                 hayRegistros = read.Read();
@@ -207,7 +222,7 @@ namespace model.dao
                     objetoUsuario.Password = read[6].ToString();
                     objetoUsuario.CuantosSubastados = Convert.ToInt32(read[7].ToString());
                     objetoUsuario.CuantosComprados = Convert.ToInt32(read[8].ToString());
-                    objetoUsuario.EsAdmin = Convert.ToBoolean(read[9].ToString());
+                    objetoUsuario.EsAdmin = convertir(read[9].ToString());
                     objetoUsuario.TelefonoCelular = read[10].ToString();
                     objetoUsuario.TelefonoCasa = read[11].ToString();
                     objetoUsuario.TelefonoTrabajo = read[12].ToString();
@@ -224,7 +239,7 @@ namespace model.dao
             }
             return hayRegistros;
         }
-
+        
         public void update(Usuario objetoUsuario)
         {
             //try
@@ -242,7 +257,7 @@ namespace model.dao
                 comando.Parameters.Add("ppassword", objetoUsuario.Password);
                 comando.Parameters.Add("pcuantossubastados", objetoUsuario.CuantosSubastados);
                 comando.Parameters.Add("pcuantoscomprados", objetoUsuario.CuantosComprados);
-                comando.Parameters.Add("ptipousuario", objetoUsuario.EsAdmin);
+                comando.Parameters.Add("ptipousuario", Convert.ToInt32(objetoUsuario.EsAdmin));
                 comando.Parameters.Add("ptelefonocelular", objetoUsuario.TelefonoCelular);
                 comando.Parameters.Add("ptelefonocasa", objetoUsuario.TelefonoCasa);
                 comando.Parameters.Add("ptelefonotrabajo", objetoUsuario.TelefonoTrabajo);
@@ -283,25 +298,25 @@ namespace model.dao
                 objConexionOracle.cerrarConexionOracle();
             }
         }
-        public void deleteOracle(Usuario objetoUsuario)
-        {
+        //public void deleteOracle(Usuario objetoUsuario)
+        //{
             
-                comando = new OracleCommand("eliminarusuario", objConexionOracle.getConexionOracle());
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("pid", objetoUsuario.IdUsuario);
-                objConexionOracle.getConexionOracle().Open();
-                comando.ExecuteNonQuery();
-            try
-            { }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                objConexionOracle.getConexionOracle().Close();
-                objConexionOracle.cerrarConexionOracle();
-            }
-        }
+        //        comando = new OracleCommand("eliminarusuario", objConexionOracle.getConexionOracle());
+        //        comando.CommandType = CommandType.StoredProcedure;
+        //        comando.Parameters.Add("pid", objetoUsuario.IdUsuario);
+        //        objConexionOracle.getConexionOracle().Open();
+        //        comando.ExecuteNonQuery();
+        //    try
+        //    { }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        objConexionOracle.getConexionOracle().Close();
+        //        objConexionOracle.cerrarConexionOracle();
+        //    }
+        //}
     }
 }

@@ -129,6 +129,24 @@ namespace Subasta.Controllers
         }
 
 
+        // [HttpGet]
+        // public ActionResult comentarioAComprador(int Id)
+        // {
+        //     Subastas subasta = new Subastas(Id);
+        //     //objetoSubasta.find(subasta);
+        //     subasta.IdSubasta = Id;
+        //     return View(subasta);
+        // }
+
+        // [HttpPost]
+        //// [HttpGet]
+        // public ActionResult comentarioACompradorr(int IdSubasta, string comentario, int evaluacion, int idUsuario)//Subastas subasta, int Id)
+        // {
+        //     //subasta.IdSubasta = Id;
+
+        //     objetoSubasta.crearComentarioAComprador(IdSubasta, comentario,evaluacion);
+        //     return RedirectToAction("../Menu/Inicio");
+        // }
         [HttpGet]
         public ActionResult comentarioAComprador(int Id)
         {
@@ -139,12 +157,11 @@ namespace Subasta.Controllers
         }
 
         [HttpPost]
-       // [HttpGet]
-        public ActionResult comentarioACompradorr(int IdSubasta, string comentario, int evaluacion, int idUsuario)//Subastas subasta, int Id)
+        public ActionResult comentarioAComprador(Subastas subasta, int Id)
         {
-            //subasta.IdSubasta = Id;
+            subasta.IdSubasta = Id;
 
-            objetoSubasta.crearComentarioAComprador(IdSubasta, comentario,evaluacion);
+            objetoSubasta.crearComentarioAComprador(subasta);
             return RedirectToAction("../Menu/Inicio");
         }
         [HttpGet]

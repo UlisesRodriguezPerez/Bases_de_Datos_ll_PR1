@@ -25,3 +25,6 @@ BEGIN
         WHERE
             palias = "Alias" AND ppassword = "Password";
 END;
+
+--SELECT validarusuario('1','1')
+--DELETE FROM "Usuarios"

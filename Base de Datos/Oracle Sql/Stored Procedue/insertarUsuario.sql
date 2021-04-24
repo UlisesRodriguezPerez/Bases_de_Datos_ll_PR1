@@ -6,11 +6,11 @@ CREATE OR REPLACE PROCEDURE insertarusuario(
 	palias IN "Usuarios"."Alias"%TYPE,
 	pcorreo IN "Usuarios"."Correo"%TYPE,
 	ppassword IN "Usuarios"."Password"%TYPE,
-	ptipousuario IN "Usuarios"."EsAdmin"%TYPE,
+	ptipousuario IN number,
 	ptelefonocelular IN "Usuarios"."TelefonoCelular"%TYPE,
 	ptelefonocasa IN "Usuarios"."TelefonoCasa"%TYPE,
-	ptelefonotrabajo IN "Usuarios"."TelefonoTrabajo"%TYPE,
-    P_RESULT OUT VARCHAR2
+	ptelefonotrabajo IN "Usuarios"."TelefonoTrabajo"%TYPE
+    --P_RESULT OUT VARCHAR2
 )
 AS
 BEGIN
@@ -45,11 +45,12 @@ BEGIN
             pTelefonoCasa,
             pTelefonoTrabajo
         );
-    P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
+   /* P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
     COMMIT;
     EXCEPTION
         WHEN OTHERS THEN
         P_RESULT := 'Error al insertar usuario.';
-        ROLLBACK;
+        ROLLBACK;*/
     
     END;
+

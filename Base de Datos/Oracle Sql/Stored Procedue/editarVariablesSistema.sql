@@ -1,21 +1,23 @@
 CREATE OR REPLACE PROCEDURE editarvariablessistema(
-	porcentajemejora IN "VariablesSistema"."porcentajeMejora"%TYPE,
-	preciominimo IN "VariablesSistema"."incrementoMinimo"%TYPE,
-    P_RESULT OUT VARCHAR2
+	porcentajemejora IN number,
+	preciominimo IN numeric
+    --P_RESULT OUT VARCHAR2
 )
 AS
 BEGIN
-    UPDATE "VariablesSistema"
+    UPDATE 
+        "VariablesSistema"
     SET
         "porcentajeMejora" = porcentajemejora,
         "incrementoMinimo" = preciominimo;
 
-    P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
+   /* P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
     COMMIT;
     EXCEPTION
         WHEN OTHERS THEN
         P_RESULT := 'Error al Actualizar Variables del sistema.';
-        ROLLBACK;
+        ROLLBACK;*/
     
 END;
 
+--CALL editarvariablessistema (5,5000);

@@ -5,8 +5,8 @@ CREATE OR REPLACE PROCEDURE subastaritem(
 	formaentrega IN varchar2,
 	precioinicial IN numeric,
 	fechainicio IN timestamp,
-	fechafinal IN timestamp,
-    P_RESULT OUT VARCHAR2
+	fechafinal IN timestamp
+    --P_RESULT OUT VARCHAR2
 )
 AS
 BEGIN
@@ -30,12 +30,12 @@ BEGIN
             fechainicio,
             fechafinal
         );
-    P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
+   /* P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
     COMMIT;
     EXCEPTION
         WHEN OTHERS THEN
         P_RESULT := 'Error al insertar item.';
         ROLLBACK;
-    
+    */
     END;
 

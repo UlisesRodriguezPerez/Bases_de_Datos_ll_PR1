@@ -29,5 +29,6 @@ BEGIN
         INNER JOIN "Usuarios"  UC ON UC."Cedula" = S."IdComprador"
         
         WHERE
-            UC."Cedula" = pcedula;
+            UC."Cedula" = pcedula
+        ORDER BY S."FechaFinal" DESC;
 END;

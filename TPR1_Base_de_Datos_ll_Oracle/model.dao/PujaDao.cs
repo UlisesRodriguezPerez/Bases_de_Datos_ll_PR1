@@ -16,35 +16,43 @@ namespace model.dao
 {
     public class PujaDao
     {
-        private Conexion objConexion;
-        private NpgsqlCommand comando;
+        private OracleCommand comando;
 
         private ConexionOracle objConexionOracle;
-        private OracleCommand comandoOracle;
 
 
         public PujaDao()
         {
             //obtenerIP();
-            objConexion = Conexion.saberEstado();
             objConexionOracle = ConexionOracle.saberEstado();
         }
+        public Boolean convertir(string bit)
+        {
+            if (bit == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+        }
         public void pujar( decimal incremento, int idSubasta, int idUsuario)
         {
             try
             {
 
-                comando = new NpgsqlCommand("pujar", objConexion.getConexion());
+                comando = new OracleCommand("pujar", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idsubasta", idSubasta);
-                comando.Parameters.AddWithValue("idusuariopujador", idUsuario);
-                comando.Parameters.AddWithValue("incremento", incremento);
-                //comando.Parameters.AddWithValue("preciofinal", puja.PrecioFinal);
-                //comando.Parameters.AddWithValue("fechasubida", puja.FechaSubida);
+                comando.Parameters.Add("idsubasta", idSubasta);
+                comando.Parameters.Add("idusuariopujador", idUsuario);
+                comando.Parameters.Add("incremento", incremento);
+                //comando.Parameters.Add("preciofinal", puja.PrecioFinal);
+                //comando.Parameters.Add("fechasubida", puja.FechaSubida);
 
-                objConexion.getConexion().Open();
+                objConexionOracle.getConexionOracle().Open();
                 comando.ExecuteNonQuery();
                 //try { 
             }
@@ -54,40 +62,40 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }   
         }
 
-        public Decimal buscarMinimoIncremento(Puja puja)
-        {
-            bool hayRegistros;
-            int precioMinimo = 0;
-            try
-            {
-                comando = new NpgsqlCommand("obtenerPrecioMinimoPuja", objConexion.getConexion());
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("pidsubasta", puja.IdSubasta);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
-                hayRegistros = read.Read();
-                if (hayRegistros)
-                {
-                    precioMinimo =  Convert.ToInt32(read[0].ToString());
+        //public Decimal buscarMinimoIncremento(Puja puja)
+        //{
+        //    bool hayRegistros;
+        //    int precioMinimo = 0;
+        //    try
+        //    {
+        //        comando = new OracleCommand("obtenerPrecioMinimoPuja", objConexionOracle.getConexionOracle());
+        //        comando.CommandType = CommandType.StoredProcedure;
+        //        comando.Parameters.Add("pidsubasta", puja.IdSubasta);
+        //        objConexionOracle.getConexionOracle().Open();
+        //        OracleDataReader read = comando.ExecuteReader();
+        //        hayRegistros = read.Read();
+        //        if (hayRegistros)
+        //        {
+        //            precioMinimo =  Convert.ToInt32(read[0].ToString());
 
 
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
-            }
-            return precioMinimo;
-        }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        objConexionOracle.getConexionOracle().Close();
+        //        objConexionOracle.cerrarConexionOracle();
+        //    }
+        //    return precioMinimo;
+        //}
     }
 }

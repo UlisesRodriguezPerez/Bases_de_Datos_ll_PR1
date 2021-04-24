@@ -26,5 +26,5 @@ BEGIN
         INNER JOIN "SubCategoria"  Sca ON Sca."IdSubCategoria" = S."IdSubCategoria"
         INNER JOIN "Categoria"  Ca ON Ca."IdCategoria" = Sca."IdCategoria"
         INNER JOIN "Usuarios"  UC ON UC."Cedula" = S."IdComprador"
-        ORDER BY S."FechaFinal";
+        ORDER BY S."FechaFinal" DESC;
 END;

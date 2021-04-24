@@ -33,5 +33,5 @@ BEGIN
         
         WHERE
             current_date >= S."FechaInicio" AND current_date <= S."FechaFinal" AND Pu."PujaMasAlta" = 1 AND S."IdSubCategoria" = idsubcategoria
-        ORDER BY S."FechaFinal";
+        ORDER BY S."FechaFinal" ASC;
 END;

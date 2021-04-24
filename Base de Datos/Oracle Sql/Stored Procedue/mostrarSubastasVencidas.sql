@@ -31,5 +31,6 @@ BEGIN
         INNER JOIN "Pujas" Pu ON Pu."IdSubasta" = S."IdSubasta"
         
         WHERE
-            current_date > S."FechaFinal" AND Pu."PujaMasAlta" = 1;
+            current_date > S."FechaFinal" AND Pu."PujaMasAlta" = 1
+        ORDER BY S."FechaFinal" DESC;
 END;

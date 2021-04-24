@@ -32,5 +32,5 @@ BEGIN
         
         WHERE
             current_date >= S."FechaInicio" AND current_date <= S."FechaFinal" AND Pu."PujaMasAlta" = 1
-        ORDER BY S."FechaFinal";
+        ORDER BY S."FechaFinal" ASC;
 END;

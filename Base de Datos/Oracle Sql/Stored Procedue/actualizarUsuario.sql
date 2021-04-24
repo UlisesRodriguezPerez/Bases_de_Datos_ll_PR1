@@ -8,11 +8,11 @@ CREATE OR REPLACE PROCEDURE editarusuario(
     ppassword IN "Usuarios"."Password"%TYPE,
     pcuantossubastados IN "Usuarios"."CuantosSubastados"%TYPE,
     pcuantoscomprados IN "Usuarios"."CuantosComprados"%TYPE,
-	ptipousuario IN "Usuarios"."EsAdmin"%TYPE,
+	ptipousuario IN NUMBER,
 	ptelefonocelular IN "Usuarios"."TelefonoCelular"%TYPE,
 	ptelefonocasa IN "Usuarios"."TelefonoCasa"%TYPE,
-	ptelefonotrabajo IN "Usuarios"."TelefonoTrabajo"%TYPE,
-    P_RESULT OUT VARCHAR2
+	ptelefonotrabajo IN "Usuarios"."TelefonoTrabajo"%TYPE
+    --P_RESULT OUT VARCHAR2
 )
 AS
 BEGIN
@@ -34,12 +34,12 @@ BEGIN
     WHERE
         "Cedula" = pcedula;
 
-    P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
+   /* P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
     COMMIT;
     EXCEPTION
         WHEN OTHERS THEN
         P_RESULT := 'Error al Actualizar usuario.';
         ROLLBACK;
-    
+    */
     END;
 

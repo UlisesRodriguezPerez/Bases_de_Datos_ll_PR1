@@ -1,8 +1,8 @@
 CREATE OR REPLACE PROCEDURE pujar(
 	idsubasta IN number,
 	idusuariopujador IN number,
-	incremento IN numeric,
-    P_RESULT OUT VARCHAR2
+	incremento IN numeric
+    --P_RESULT OUT VARCHAR2
 ) IS
     nuevoIncrementoMinimo numeric;-- idsubasta integer;
     incrementoPorcentaje numeric;
@@ -44,12 +44,12 @@ BEGIN
 		current_timestamp,
 		1
 	);
-P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
+/*P_RESULT := 'SE EJECUTO CORRECTAMENTE.';
 COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
     P_RESULT := 'Error al insertar la Puja.';
     ROLLBACK;
-
+*/
 END;
 

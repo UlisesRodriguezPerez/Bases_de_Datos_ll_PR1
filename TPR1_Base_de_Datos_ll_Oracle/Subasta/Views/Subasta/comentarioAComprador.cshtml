@@ -3,25 +3,7 @@
     ViewBag.Title = "Crear Comenario a Comprador";
 }
 
-<h1>Crear Comenario a Comprador</h1>
-@using (Html.BeginForm("comentarioACompradorr", "Subasta"))
-{
-    <label>subasta</label>
-    <input type="number" name="idSubasta" value="@Model.IdSubasta"  />
-    @*<input type="number" name="idUsuario" value="@Model.IdUsuarioActual" />*@
-
-
-    <input type="text" name="comentario" value="@Model.ComentarioAComprador" />
-    @*style="display: none" />*@
-
-
-    <input type="number" name="evaluacion" value="@Model.Evaluacion" min="1" max="5"/>
-    @*style="display: none" />*@
-
-    <button type="submit">Guardar</button>
-}
-
-
+<h1>Crear Comenario a Vendedor</h1>
 @using (Html.BeginForm())
 {
     <div class="form-horizontal">
@@ -41,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-kabel col-md-2" })
             <div class="col-md-6">
-                @Html.EditorFor(model => model.Evaluacion, new { htmlAttrbutes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Evaluacion, new { htmlAttrbutes = new { @class = "form-control", min = "1" } })
             </div>
         </div>
 

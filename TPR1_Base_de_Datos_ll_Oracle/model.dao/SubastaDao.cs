@@ -16,32 +16,40 @@ namespace model.dao
 {
     public class SubastaDao
     {
-        private Conexion objConexion;
-        private NpgsqlCommand comando;
+        private OracleCommand comando;
 
         private ConexionOracle objConexionOracle;
-        private OracleCommand comandoOracle;
 
 
         public SubastaDao()
         {
             //obtenerIP();
-            objConexion = Conexion.saberEstado();
             objConexionOracle = ConexionOracle.saberEstado();
         }
+        public Boolean convertir(string bit)
+        {
+            if (bit == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+        }
         public List<Subastas> buscarSubastasActivas(int Id)
         {
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarsubastasactivas", objConexion.getConexion())
+                comando = new OracleCommand("mostrarsubastasactivas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-              
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -75,8 +83,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -85,13 +93,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarsubastasactivassubcategorias", objConexion.getConexion())
+                comando = new OracleCommand("mostrarsubastasactivassubcategorias", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("idsubcategoria", idSubCategoria);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("idsubcategoria", idSubCategoria);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -125,8 +134,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -135,12 +144,13 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarcategorias", objConexion.getConexion())
+                comando = new OracleCommand("mostrarcategorias", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -159,8 +169,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -170,13 +180,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarsubcategorias", objConexion.getConexion())
+                comando = new OracleCommand("mostrarsubcategorias", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("idcategoria", idCategoria);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("idcategoria", idCategoria);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -197,8 +208,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -207,13 +218,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarhistorialpujas", objConexion.getConexion())
+                comando = new OracleCommand("mostrarhistorialpujas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("idsubasta", Id);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("idsubasta", Id);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -235,8 +247,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -246,12 +258,13 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarsubastasvencidas", objConexion.getConexion())
+                comando = new OracleCommand("mostrarsubastasvencidas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -284,8 +297,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -295,12 +308,13 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrartodassubastas", objConexion.getConexion())
+                comando = new OracleCommand("mostrartodassubastas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -330,8 +344,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -340,13 +354,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarsubastadas", objConexion.getConexion())
+                comando = new OracleCommand("mostrarsubastadas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("pcedula", idUsuario);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("pcedula", idUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -377,8 +392,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -387,13 +402,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarcompradas", objConexion.getConexion())
+                comando = new OracleCommand("mostrarcompradas", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("pcedula", idUsuario);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("pcedula", idUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -423,8 +439,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -433,14 +449,14 @@ namespace model.dao
             try
             {
 
-                comando = new NpgsqlCommand("insertarComentarioAVendedor", objConexion.getConexion());
+                comando = new OracleCommand("insertarComentarioAVendedor", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idsubasta", subasta.IdSubasta);
-                comando.Parameters.AddWithValue("comentario", subasta.ComentarioAVendedor);
-                comando.Parameters.AddWithValue("evaluacion", subasta.Evaluacion);
+                comando.Parameters.Add("idsubasta", subasta.IdSubasta);
+                comando.Parameters.Add("comentario", subasta.ComentarioAVendedor);
+                comando.Parameters.Add("evaluacion", subasta.Evaluacion);
 
-                objConexion.getConexion().Open();
+                objConexionOracle.getConexionOracle().Open();
                 comando.ExecuteNonQuery();
                 //try { 
             }
@@ -450,25 +466,25 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
 
 
         }
-        public void crearComentarioAComprador(int idSubasta, string comentario, int evaluacion)
+        public void crearComentarioAComprador(Subastas subasta)
         {
             try
             {
 
-                comando = new NpgsqlCommand("insertarComentarioAComprador", objConexion.getConexion());
+                comando = new OracleCommand("insertarcomentarioacomprador", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idsubasta", idSubasta);
-                comando.Parameters.AddWithValue("comentario", comentario);
-                comando.Parameters.AddWithValue("evaluacion", evaluacion);
+                comando.Parameters.Add("idsubasta", subasta.IdSubasta);
+                comando.Parameters.Add("comentario", subasta.ComentarioAComprador);
+                comando.Parameters.Add("evaluacion", subasta.Evaluacion);
 
-                objConexion.getConexion().Open();
+                objConexionOracle.getConexionOracle().Open();
                 comando.ExecuteNonQuery();
                 //try { 
             }
@@ -478,27 +494,29 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
+
+
         }
         public void subastarItem(Subastas subasta)
         {
             
 
-                comando = new NpgsqlCommand("subastarItem", objConexion.getConexion());
+                comando = new OracleCommand("subastarItem", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("idusuario", subasta.IdUsuarioActual);
-                comando.Parameters.AddWithValue("subcategoria", subasta.NombreSubCategoria);
-                comando.Parameters.AddWithValue("descripcion", subasta.Descripcion);
-                comando.Parameters.AddWithValue("formaentrega", subasta.FormaEntrega);
-                comando.Parameters.AddWithValue("precioinicial", subasta.PrecioInicial);
-                comando.Parameters.AddWithValue("fechainicio", subasta.FechaInicio);
-                comando.Parameters.AddWithValue("fechafinal", subasta.FechaFinal);
+                comando.Parameters.Add("idusuario", subasta.IdUsuarioActual);
+                comando.Parameters.Add("subcategoria", subasta.NombreSubCategoria);
+                comando.Parameters.Add("descripcion", subasta.Descripcion);
+                comando.Parameters.Add("formaentrega", subasta.FormaEntrega);
+                comando.Parameters.Add("precioinicial", subasta.PrecioInicial);
+                comando.Parameters.Add("fechainicio", subasta.FechaInicio);
+                comando.Parameters.Add("fechafinal", subasta.FechaFinal);
 
 
-                objConexion.getConexion().Open();
+                objConexionOracle.getConexionOracle().Open();
                 comando.ExecuteNonQuery();
             //try { 
             try
@@ -509,8 +527,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
         }
         public bool find(Subastas objSubasta)
@@ -518,11 +536,11 @@ namespace model.dao
             bool hayRegistros;
             try
             {
-                comando = new NpgsqlCommand("buscarsubasta", objConexion.getConexion());
+                comando = new OracleCommand("buscarsubasta", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("pidsubasta", objSubasta.IdSubasta);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("pidsubasta", objSubasta.IdSubasta);
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 hayRegistros = read.Read();
                 if (hayRegistros)
                 {
@@ -535,8 +553,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return hayRegistros;
         }
@@ -545,13 +563,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarinfovendedor", objConexion.getConexion())
+                comando = new OracleCommand("mostrarinfovendedor", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("pcedula", idUsuario);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("pcedula", idUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -572,8 +591,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -582,13 +601,14 @@ namespace model.dao
             List<Subastas> listaSubastas = new List<Subastas>();
             try
             {
-                comando = new NpgsqlCommand("mostrarinfocomprador", objConexion.getConexion())
+                comando = new OracleCommand("mostrarinfocomprador", objConexionOracle.getConexionOracle())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                comando.Parameters.AddWithValue("pcedula", idUsuario);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                comando.Parameters.Add("pcedula", idUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 while (read.Read())
                 {
                     Subastas objetoSubasta = new Subastas
@@ -609,8 +629,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return listaSubastas;
         }
@@ -619,11 +639,12 @@ namespace model.dao
             bool hayRegistros;
             try
             {
-                comando = new NpgsqlCommand("buscarVariablesSistema", objConexion.getConexion());
+                comando = new OracleCommand("buscarVariablesSistema", objConexionOracle.getConexionOracle());
                 comando.CommandType = CommandType.StoredProcedure;
-                //comando.Parameters.AddWithValue("pid", objetoUsuario.IdUsuario);
-                objConexion.getConexion().Open();
-                NpgsqlDataReader read = comando.ExecuteReader();
+                //comando.Parameters.Add("pid", objetoUsuario.IdUsuario);
+                comando.Parameters.Add(new OracleParameter("P_CURSOR", OracleDbType.RefCursor)).Direction = System.Data.ParameterDirection.Output;
+                objConexionOracle.getConexionOracle().Open();
+                OracleDataReader read = comando.ExecuteReader();
                 hayRegistros = read.Read();
                 if (hayRegistros)
                 {
@@ -637,8 +658,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
             return hayRegistros;
         }
@@ -647,14 +668,14 @@ namespace model.dao
             //try
             //{
 
-            comando = new NpgsqlCommand("editarVariablesSistema", objConexion.getConexion());
+            comando = new OracleCommand("editarVariablesSistema", objConexionOracle.getConexionOracle());
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("porcentajemejora", subasta.PorcentajeMejora);
-            comando.Parameters.AddWithValue("preciominimo", subasta.PrecioMinimo);
+            comando.Parameters.Add("porcentajemejora", subasta.PorcentajeMejora);
+            comando.Parameters.Add("preciominimo", subasta.PrecioMinimo);
 
      
-            objConexion.getConexion().Open();
+            objConexionOracle.getConexionOracle().Open();
             comando.ExecuteNonQuery();
             try
             {
@@ -666,8 +687,8 @@ namespace model.dao
             }
             finally
             {
-                objConexion.getConexion().Close();
-                objConexion.cerrarConexion();
+                objConexionOracle.getConexionOracle().Close();
+                objConexionOracle.cerrarConexionOracle();
             }
         }
     }
